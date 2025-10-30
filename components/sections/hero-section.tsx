@@ -38,7 +38,7 @@ export function HeroSection() {
       {/* Content */}
       <div className="container relative z-10 mx-auto px-4 py-12 lg:py-20 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-6 lg:mb-8 flex items-center justify-center gap-2 lg:gap-3 animate-fade-in-up">
+          <div className="mb-6 flex items-center justify-center gap-2 lg:gap-3 animate-fade-in-up lg:mb-5">
             <Image
               src="/images/robocosmos-enterprise-logo.png"
               alt="RoboCosmos Enterprise"
@@ -62,7 +62,7 @@ export function HeroSection() {
               <span className="text-foreground">Vergleichen. Mieten. Skalieren.</span>
             </h2>
 
-          <p className="mb-8 lg:mb-10 text-pretty text-base lg:text-lg xl:text-xl text-muted-foreground animate-fade-in-up animation-delay-300">
+          <p className="mb-8 lg:mb-10 text-pretty text-base lg:text-lg xl:text-xl text-muted-foreground animate-fade-in-up animation-delay-300 mt-5">
             Reagieren Sie auf den Fachkräftemangel. Auf Deutschlands B2B-Marktplatz für humanoide Robotik
           </p>
           <div className="flex flex-col items-center justify-center gap-3 lg:gap-4 sm:flex-row animate-fade-in-up animation-delay-400">
