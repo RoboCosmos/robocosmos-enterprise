@@ -24,7 +24,7 @@ export function Header() {
   return (
     <nav
       className={`sticky top-0 z-50 transition-all duration-300 text-popover ${
-        isScrolled ? "h-16 bg-card/90 backdrop-blur-sm border-b border-border" : "h-24 bg-card/10"
+        isScrolled ? "h-16 bg-card/90 backdrop-blur-sm border-b border-border" : "h-24 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8 h-full">
