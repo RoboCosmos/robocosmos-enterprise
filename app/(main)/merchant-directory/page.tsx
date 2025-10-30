@@ -356,7 +356,7 @@ export default function MerchantDirectoryPage() {
                     <CardFooter>
                       <Link href={`/merchant-directory/${merchant.id}`} className="w-full">
                         <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" size="sm">
-                          Profil ansehen & Roboter
+                          Profil & Angebote ansehen
                         </Button>
                       </Link>
                     </CardFooter>

@@ -3,7 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Package, Battery, TrendingDown, Calendar, ShoppingCart, MapPin, Mail } from "lucide-react"
+import { ArrowLeft, Package, Battery, TrendingDown, Calendar, ShoppingCart, MapPin, Mail, FileDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -38,6 +38,7 @@ const sampleRobots = {
       Energieverbrauch: "5,5 kW",
       Steuerung: "IRC5",
     },
+    datasheetUrl: "/datasheets/abb-irb-6700.pdf",
   },
   "2": {
     id: "2",
@@ -64,6 +65,7 @@ const sampleRobots = {
       Energieverbrauch: "4,8 kW",
       Steuerung: "KR C4",
     },
+    datasheetUrl: "/datasheets/kuka-kr-quantec.pdf",
   },
 }
 
@@ -81,6 +83,11 @@ export default function RobotDetailPage({ params }: { params: { id: string } }) 
 
   const thumbnails = [robot.image, robot.image, robot.image, robot.image]
 
+  const handleDatasheetDownload = () => {
+    // In production, this would trigger an actual download
+    window.open(robot.datasheetUrl, "_blank")
+  }
+
   return (
     <div className="container mx-auto max-w-7xl px-4 py-12">
       <Link
@@ -91,14 +98,24 @@ export default function RobotDetailPage({ params }: { params: { id: string } }) 
         Zurück zur Übersicht
       </Link>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-12">
-        {/* LEFT COLUMN - Media Gallery */}
-        <div className="space-y-4">
+      <div className="mb-8">
+        <p className="text-sm text-muted-foreground mb-2">{robot.manufacturer}</p>
+        <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">{robot.name}</h1>
+        <div className="flex flex-wrap gap-2">
+          <Badge className={statusColors[robot.status]}>{robot.status}</Badge>
+          <Badge variant="outline" className="bg-card border-border text-foreground">
+            {robot.category}
+          </Badge>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        {/* LEFT COLUMN - Media Gallery (2/3 width on large screens) */}
+        <div className="lg:col-span-2 space-y-4">
           {/* Main Image */}
           <Card className="bg-card border-border overflow-hidden">
             <div className="relative aspect-video">
               <Image src={robot.image || "/placeholder.svg"} alt={robot.name} fill className="object-cover" />
-              <Badge className={`absolute top-4 right-4 ${statusColors[robot.status]}`}>{robot.status}</Badge>
             </div>
           </Card>
 
@@ -120,22 +137,9 @@ export default function RobotDetailPage({ params }: { params: { id: string } }) 
           </div>
         </div>
 
-        {/* RIGHT COLUMN - Actions & Core Info */}
+        {/* RIGHT COLUMN - Actions & Core Info (1/3 width on large screens) */}
         <div className="space-y-6">
-          {/* B1. Header Info */}
-          <div>
-            <p className="text-sm text-muted-foreground mb-2">{robot.manufacturer}</p>
-            <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">{robot.name}</h1>
-            <div className="flex flex-wrap gap-2 mb-4">
-              <Badge className={statusColors[robot.status]}>{robot.status}</Badge>
-              <Badge variant="outline" className="bg-card border-border text-foreground">
-                {robot.category}
-              </Badge>
-            </div>
-            <Separator className="my-6" />
-          </div>
-
-          {/* B2. Action Card ("Buy Box") */}
+          {/* Action Card ("Buy Box") */}
           <Card className="bg-card border-border">
             <CardContent className="p-6 space-y-4">
               {/* Rental Option */}
@@ -199,7 +203,7 @@ export default function RobotDetailPage({ params }: { params: { id: string } }) 
             </CardContent>
           </Card>
 
-          {/* B3. Provider Card */}
+          {/* Provider Card */}
           <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="text-lg text-foreground">Anbieter</CardTitle>
@@ -302,8 +306,16 @@ export default function RobotDetailPage({ params }: { params: { id: string } }) 
         {/* Technical Data Tab */}
         <TabsContent value="technical">
           <Card className="bg-card border-border">
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-foreground">Technische Spezifikationen</CardTitle>
+              <Button
+                onClick={handleDatasheetDownload}
+                variant="outline"
+                className="bg-background border-border text-foreground hover:bg-accent"
+              >
+                <FileDown className="mr-2 h-4 w-4" />
+                Datenblatt herunterladen
+              </Button>
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 sm:grid-cols-2">

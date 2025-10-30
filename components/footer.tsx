@@ -3,32 +3,31 @@ import Image from "next/image"
 
 const footerLinks = {
   "Über RoboCosmos Enterprise": [
-    { label: "Über uns", href: "/ueber-uns" },
-    { label: "Karriere", href: "#" },
-    { label: "Presse", href: "#" },
+    { label: "Über uns", href: "/about" },
+    { label: "Karriere", href: "/careers" },
+    { label: "Kontakt", href: "/contact" },
   ],
   "Für Unternehmen": [
-    { label: "Roboter finden", href: "/roboter-finden" },
-    { label: "So funktioniert's", href: "/#funktioniert" },
-    { label: "Support", href: "#" },
+    { label: "Roboter finden", href: "/robots" },
+    { label: "Händlerverzeichnis", href: "/merchant-directory" },
+    { label: "Hilfe & Support", href: "/help" },
   ],
   "Für Händler": [
-    { label: "Händler werden", href: "/haendler-werden" },
+    { label: "Händler werden", href: "/become-merchant" },
     { label: "Händler-Login", href: "/login" },
-    { label: "Richtlinien", href: "#" },
+    { label: "Händler bewerben", href: "/apply-merchant" },
   ],
-  "Quick Links": [
-    { label: "Kontakt", href: "#" },
-    { label: "Impressum", href: "#" },
-    { label: "AGB", href: "#" },
-    { label: "Datenschutz", href: "#" },
+  Rechtliches: [
+    { label: "Impressum", href: "/imprint" },
+    { label: "Datenschutz", href: "/privacy" },
+    { label: "AGB", href: "/terms" },
   ],
 }
+// </CHANGE>
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-card">
-    {/* --- ENDE DER ÄNDERUNG --- */}
       <div className="container mx-auto px-4 py-12 lg:px-8 lg:py-10">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {Object.entries(footerLinks).map(([category, links]) => (
@@ -53,8 +52,8 @@ export function Footer() {
           {/* Left side: Logo and brand name */}
           <div className="flex items-center gap-2">
             <Image
-              src="/images/robocosmos-enterprise-logo.png" // Sieht aus als wäre Ihr Projektname "RoboCosmos"?
-              alt="RoboCosmos Enterprise"
+              src="/images/robocosmos-enterprise-logo.png"
+              alt="RoboCosmos Enterprise Logo"
               width={56}
               height={56}
               className="h-10 w-10 lg:h-14 lg:w-14 transition-all duration-300"
