@@ -46,7 +46,9 @@ export function HeroSection() {
               height={64}
               className="h-12 w-12 lg:h-16 lg:w-16"
             />
-            <h2 className="text-xl lg:text-3xl font-bold text-foreground">RoboCosmos Enterprise</h2>
+            <h2 className="text-xl lg:text-3xl font-bold">
+              <span className="text-foreground">RoboCosmos</span> <span className="text-primary">Enterprise</span>
+            </h2>
           </div>
 
           <h1 className="mb-4 lg:mb-6 text-balance text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground animate-fade-in-up animation-delay-200">

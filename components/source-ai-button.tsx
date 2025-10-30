@@ -35,7 +35,7 @@ export function SourceAIButton() {
           <SheetDescription>Frage mich relevante Fragen.</SheetDescription>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto py-4 space-y-4 px-3">
+        <div className="flex-1 overflow-y-auto py-4 space-y-4 px-4">
           {/* AI Message */}
           <div className="flex items-start gap-3">
             <Avatar className="h-8 w-8">

@@ -23,7 +23,6 @@ const footerLinks = {
     { label: "AGB", href: "/terms" },
   ],
 }
-// </CHANGE>
 
 export function Footer() {
   return (
@@ -58,7 +57,10 @@ export function Footer() {
               height={56}
               className="h-10 w-10 lg:h-14 lg:w-14 transition-all duration-300"
             />
-            <span className="text-lg font-bold text-foreground">RoboCosmos </span>
+            <div className="flex items-center gap-1">
+              <span className="text-lg font-bold text-foreground">RoboCosmos</span>
+              <span className="text-lg font-bold text-primary">Enterprise</span>
+            </div>
           </div>
 
           {/* Right side: Copyright and B2C link in one line */}

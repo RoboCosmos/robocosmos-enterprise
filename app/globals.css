@@ -37,6 +37,9 @@
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.25 0.01 264);
   --sidebar-ring: oklch(0.55 0.22 264);
+  /* Added darker header background color */
+  --header-bg: oklch(0.08 0.01 264);
+  --header-bg-scrolled: oklch(0.1 0.01 264);
 }
 
 .dark {
@@ -122,18 +125,6 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-  button,
-  a,
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  select,
-  [role="button"],
-  [role="link"],
-  label[for],
-  .cursor-pointer {
-    @apply cursor-pointer;
   }
 }
 

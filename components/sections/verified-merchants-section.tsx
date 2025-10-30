@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Map, List, MapPin, Star, Factory } from "lucide-react"
 
 export function VerifiedMerchantsSection() {
-  const [view, setView] = useState<string>("list")
+  const [view, setView] = useState<string>("map")
 
   const merchants = [
     {
@@ -141,7 +141,7 @@ export function VerifiedMerchantsSection() {
 
                     <div className="hidden sm:block">
                       <button className="px-4 py-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                        Details ansehen →
+                        Details und Lösungen ansehen →
                       </button>
                     </div>
                   </li>
