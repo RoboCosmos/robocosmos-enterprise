@@ -30,11 +30,11 @@ export function RaasProcessSection() {
   ]
 
   return (
-    <section className="py-16 md:py-24 bg-gray-950">
+    <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Der RaaS-Prozess in 4 Schritten</h2>
-          <p className="text-gray-400 text-lg">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Der RaaS-Prozess in 4 Schritten</h2>
+          <p className="text-muted-foreground text-lg">
             Von der Buchung bis zur Rückgabe – ein durchgängiger, standardisierter Ablauf
           </p>
         </div>
@@ -43,21 +43,21 @@ export function RaasProcessSection() {
         <div className="hidden lg:flex items-start justify-between gap-4 mb-8">
           {steps.map((step, index) => (
             <div key={step.number} className="flex items-start flex-1">
-              <Card className="bg-gray-900 border-gray-800 p-6 flex-1">
+              <Card className="bg-card border-border p-6 flex-1">
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center">
-                    <step.icon className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center">
+                    <step.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center -mt-2">
-                    <span className="text-xl font-bold text-blue-500">{step.number}</span>
+                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center -mt-2">
+                    <span className="text-xl font-bold text-primary">{step.number}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                  <p className="text-sm text-gray-400">{step.description}</p>
+                  <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground">{step.description}</p>
                 </div>
               </Card>
               {index < steps.length - 1 && (
                 <div className="flex items-center justify-center px-2 pt-12">
-                  <ArrowRight className="w-8 h-8 text-blue-500" />
+                  <ArrowRight className="w-8 h-8 text-primary" />
                 </div>
               )}
             </div>
@@ -68,21 +68,21 @@ export function RaasProcessSection() {
         <div className="lg:hidden space-y-6">
           {steps.map((step, index) => (
             <div key={step.number} className="flex flex-col items-center">
-              <Card className="bg-gray-900 border-gray-800 p-6 w-full">
+              <Card className="bg-card border-border p-6 w-full">
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center">
-                    <step.icon className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center">
+                    <step.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center -mt-2">
-                    <span className="text-xl font-bold text-blue-500">{step.number}</span>
+                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center -mt-2">
+                    <span className="text-xl font-bold text-primary">{step.number}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                  <p className="text-sm text-gray-400">{step.description}</p>
+                  <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground">{step.description}</p>
                 </div>
               </Card>
               {index < steps.length - 1 && (
                 <div className="flex items-center justify-center py-4">
-                  <ArrowRight className="w-8 h-8 text-blue-500 rotate-90" />
+                  <ArrowRight className="w-8 h-8 text-primary rotate-90" />
                 </div>
               )}
             </div>

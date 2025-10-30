@@ -72,25 +72,21 @@ export function CookieConsentBanner() {
   return (
     <>
       {/* Compact Banner */}
-      <Card className="fixed bottom-4 right-4 z-50 max-w-md border-zinc-800 bg-card p-4 shadow-2xl backdrop-blur-sm">
+      <Card className="fixed bottom-4 right-4 z-50 max-w-md border-border bg-card p-4 shadow-2xl backdrop-blur-sm">
         <div className="flex items-start gap-3">
-          <Cookie className="mt-1 h-5 w-5 flex-shrink-0 text-blue-500" />
+          <Cookie className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
           <div className="flex-1 space-y-3">
             <div>
-              <h3 className="font-semibold text-white">Datenschutzeinstellungen</h3>
-              <p className="mt-1 text-sm text-gray-400">
+              <h3 className="font-semibold text-foreground">Datenschutzeinstellungen</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
                 Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und unsere Dienste zu optimieren.
               </p>
             </div>
             <div className="flex flex-col gap-2 sm:flex-row">
-              <Button onClick={acceptAll} className="flex-1 bg-blue-600 text-white hover:bg-blue-700">
+              <Button onClick={acceptAll} className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">
                 Alle akzeptieren
               </Button>
-              <Button
-                onClick={openDetails}
-                variant="outline"
-                className="flex-1 border-zinc-700 bg-transparent text-white hover:bg-zinc-800"
-              >
+              <Button onClick={openDetails} variant="outline" className="flex-1 bg-transparent">
                 <Settings className="mr-2 h-4 w-4" />
                 Auswahl treffen
               </Button>
@@ -101,10 +97,10 @@ export function CookieConsentBanner() {
 
       {/* Detailed Modal */}
       <Dialog open={showDetails} onOpenChange={setShowDetails}>
-        <DialogContent className="max-w-2xl border-zinc-800 bg-card text-white">
+        <DialogContent className="max-w-2xl border-border bg-card text-foreground">
           <DialogHeader>
             <DialogTitle className="text-xl">Cookie-Einstellungen</DialogTitle>
-            <DialogDescription className="text-gray-400">
+            <DialogDescription className="text-muted-foreground">
               Verwalten Sie Ihre Cookie-Präferenzen für RoboCosmos Enterprise. Sie können Ihre Einstellungen jederzeit
               ändern.
             </DialogDescription>
@@ -115,10 +111,10 @@ export function CookieConsentBanner() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <Label htmlFor="essential" className="text-base font-semibold text-white">
+                  <Label htmlFor="essential" className="text-base font-semibold text-foreground">
                     Technisch notwendig
                   </Label>
-                  <p className="mt-1 text-sm text-gray-400">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert
                     werden.
                   </p>
@@ -127,20 +123,20 @@ export function CookieConsentBanner() {
                   id="essential"
                   checked={preferences.essential}
                   disabled
-                  className="data-[state=checked]:bg-blue-600"
+                  className="data-[state=checked]:bg-primary"
                 />
               </div>
-              <Separator className="bg-slate-800" />
+              <Separator />
             </div>
 
             {/* Analytics Cookies */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <Label htmlFor="analytics" className="text-base font-semibold text-white">
+                  <Label htmlFor="analytics" className="text-base font-semibold text-foreground">
                     Analyse & Statistik
                   </Label>
-                  <p className="mt-1 text-sm text-gray-400">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem
                     Informationen anonym gesammelt werden.
                   </p>
@@ -149,20 +145,20 @@ export function CookieConsentBanner() {
                   id="analytics"
                   checked={preferences.analytics}
                   onCheckedChange={(checked) => setPreferences({ ...preferences, analytics: checked })}
-                  className="data-[state=checked]:bg-blue-600"
+                  className="data-[state=checked]:bg-primary"
                 />
               </div>
-              <Separator className="bg-slate-800" />
+              <Separator />
             </div>
 
             {/* Marketing Cookies */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <Label htmlFor="marketing" className="text-base font-semibold text-white">
+                  <Label htmlFor="marketing" className="text-base font-semibold text-foreground">
                     Marketing & Personalisierung
                   </Label>
-                  <p className="mt-1 text-sm text-gray-400">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     Diese Cookies werden verwendet, um Ihnen relevante Werbung und personalisierte Inhalte anzuzeigen.
                   </p>
                 </div>
@@ -170,14 +166,14 @@ export function CookieConsentBanner() {
                   id="marketing"
                   checked={preferences.marketing}
                   onCheckedChange={(checked) => setPreferences({ ...preferences, marketing: checked })}
-                  className="data-[state=checked]:bg-blue-600"
+                  className="data-[state=checked]:bg-primary"
                 />
               </div>
             </div>
 
             {/* Privacy Policy Link */}
-            <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
-              <Link href="/privacy" className="flex items-center text-sm text-blue-500 hover:text-blue-400">
+            <div className="rounded-lg border border-border bg-muted p-4">
+              <Link href="/privacy" className="flex items-center text-sm text-primary hover:text-primary/80">
                 <ExternalLink className="mr-2 h-4 w-4" />
                 Zur vollständigen Datenschutzerklärung
               </Link>
@@ -186,14 +182,10 @@ export function CookieConsentBanner() {
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
-            <Button onClick={acceptAll} className="bg-blue-600 text-white hover:bg-blue-700">
+            <Button onClick={acceptAll} className="bg-primary text-primary-foreground hover:bg-primary/90">
               Alle akzeptieren
             </Button>
-            <Button
-              onClick={acceptSelected}
-              variant="outline"
-              className="border-zinc-700 bg-transparent text-white hover:bg-zinc-800"
-            >
+            <Button onClick={acceptSelected} variant="outline">
               Auswahl speichern
             </Button>
           </div>

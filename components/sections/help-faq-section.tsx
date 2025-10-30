@@ -37,14 +37,14 @@ export function HelpFaqSection() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-gray-100">Häufig gestellte Fragen (FAQ)</h2>
-      <Card className="bg-gray-900 border-gray-800">
+      <h2 className="text-3xl font-bold text-foreground">Häufig gestellte Fragen (FAQ)</h2>
+      <Card className="bg-card border-border">
         <CardContent className="p-6">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index + 1}`} className="border-gray-800">
-                <AccordionTrigger className="text-gray-100 hover:text-blue-500">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-gray-400">{faq.answer}</AccordionContent>
+              <AccordionItem key={index} value={`item-${index + 1}`} className="border-border">
+                <AccordionTrigger className="text-foreground hover:text-primary">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

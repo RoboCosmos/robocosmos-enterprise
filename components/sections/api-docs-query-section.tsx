@@ -6,15 +6,15 @@ export function ApiDocsQuerySection() {
   return (
     <section id="abfragen" className="scroll-mt-20">
       <div className="flex items-center gap-3 mb-6">
-        <Search className="h-6 w-6 text-blue-500" />
-        <h2 className="text-3xl font-bold text-white">Abfragen (Queries)</h2>
+        <Search className="h-6 w-6 text-primary" />
+        <h2 className="text-3xl font-bold text-foreground">Abfragen (Queries)</h2>
       </div>
 
       <div className="space-y-6">
-        <Card className="bg-gray-900/50 border-gray-800">
+        <Card className="bg-card/50 border-border">
           <CardHeader>
             <div className="flex items-center gap-2 mb-2">
-              <CardTitle className="text-white">Alle verfügbaren Roboter abrufen</CardTitle>
+              <CardTitle className="text-foreground">Alle verfügbaren Roboter abrufen</CardTitle>
               <Badge variant="outline" className="bg-green-600/20 text-green-400 border-green-600">
                 Query
               </Badge>
@@ -24,7 +24,7 @@ export function ApiDocsQuerySection() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="rounded-lg bg-gray-950 border border-gray-800 p-4 overflow-x-auto">
+            <div className="rounded-lg bg-background border border-border p-4 overflow-x-auto">
               <pre className="text-sm">
                 <code>
                   <span className="text-purple-400">query</span> <span className="text-yellow-400">GetRobots</span>
@@ -98,8 +98,8 @@ export function ApiDocsQuerySection() {
               </pre>
             </div>
 
-            <div className="mt-4 rounded-lg bg-gray-950 border border-gray-800 p-4">
-              <p className="text-sm text-gray-400 mb-2">Beispiel-Variablen:</p>
+            <div className="mt-4 rounded-lg bg-background border border-border p-4">
+              <p className="text-sm text-muted-foreground mb-2">Beispiel-Variablen:</p>
               <pre className="text-sm">
                 <code className="text-gray-300">
                   {`{

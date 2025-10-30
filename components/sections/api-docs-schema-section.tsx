@@ -5,17 +5,17 @@ export function ApiDocsSchemaSection() {
   return (
     <section id="datenmodelle" className="scroll-mt-20">
       <div className="flex items-center gap-3 mb-6">
-        <Database className="h-6 w-6 text-blue-500" />
-        <h2 className="text-3xl font-bold text-white">Datenmodelle (GraphQL Schema)</h2>
+        <Database className="h-6 w-6 text-primary" />
+        <h2 className="text-3xl font-bold text-foreground">Datenmodelle (GraphQL Schema)</h2>
       </div>
 
-      <Card className="bg-gray-900/50 border-gray-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader>
-          <CardTitle className="text-white">Humanoid Type</CardTitle>
+          <CardTitle className="text-foreground">Humanoid Type</CardTitle>
           <CardDescription>Das Hauptdatenmodell für humanoide Roboter in der RoboCosmos-Plattform.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="rounded-lg bg-gray-950 border border-gray-800 p-4 overflow-x-auto">
+          <div className="rounded-lg bg-background border border-border p-4 overflow-x-auto">
             <pre className="text-sm">
               <code>
                 <span className="text-purple-400">type</span> <span className="text-yellow-400">Humanoid</span>{" "}

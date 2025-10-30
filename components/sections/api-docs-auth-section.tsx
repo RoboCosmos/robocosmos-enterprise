@@ -6,13 +6,13 @@ export function ApiDocsAuthSection() {
   return (
     <section id="authentifizierung" className="scroll-mt-20">
       <div className="flex items-center gap-3 mb-6">
-        <Key className="h-6 w-6 text-blue-500" />
-        <h2 className="text-3xl font-bold text-white">Authentifizierung</h2>
+        <Key className="h-6 w-6 text-primary" />
+        <h2 className="text-3xl font-bold text-foreground">Authentifizierung</h2>
       </div>
 
-      <Card className="bg-gray-900/50 border-gray-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-white">JWT Bearer Token</CardTitle>
+          <CardTitle className="text-foreground">JWT Bearer Token</CardTitle>
           <CardDescription>
             Alle API-Anfragen müssen mit einem gültigen JWT-Token authentifiziert werden.
           </CardDescription>
@@ -20,19 +20,19 @@ export function ApiDocsAuthSection() {
         <CardContent className="space-y-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Badge variant="outline" className="bg-blue-600/20 text-blue-400 border-blue-600">
+              <Badge variant="outline" className="bg-primary/20 text-primary border-primary">
                 POST
               </Badge>
-              <code className="text-sm text-gray-300">/api/auth/login</code>
+              <code className="text-sm text-muted-foreground">/api/auth/login</code>
             </div>
-            <p className="text-sm text-gray-400 mb-4">
-              Token-Lifetime: <span className="text-blue-400 font-medium">60 Minuten</span>
+            <p className="text-sm text-muted-foreground mb-4">
+              Token-Lifetime: <span className="text-primary font-medium">60 Minuten</span>
             </p>
           </div>
 
-          <div className="rounded-lg bg-gray-950 border border-gray-800 p-4 overflow-x-auto">
+          <div className="rounded-lg bg-muted border border-border p-4 overflow-x-auto">
             <pre className="text-sm">
-              <code className="text-gray-300">
+              <code className="text-foreground">
                 {`curl -X POST https://api.robocosmos.com/auth/login \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -53,10 +53,10 @@ export function ApiDocsAuthSection() {
             </pre>
           </div>
 
-          <div className="rounded-lg bg-gray-950 border border-gray-800 p-4 overflow-x-auto mt-4">
-            <p className="text-sm text-gray-400 mb-2">Verwendung des Tokens:</p>
+          <div className="rounded-lg bg-muted border border-border p-4 overflow-x-auto mt-4">
+            <p className="text-sm text-muted-foreground mb-2">Verwendung des Tokens:</p>
             <pre className="text-sm">
-              <code className="text-gray-300">
+              <code className="text-foreground">
                 {`curl -X POST https://api.robocosmos.com/graphql \\
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \\
   -H "Content-Type: application/json" \\
