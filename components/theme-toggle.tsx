@@ -5,7 +5,11 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  position?: "left" | "right"
+}
+
+export function ThemeToggle({ position = "left" }: ThemeToggleProps) {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
@@ -22,8 +26,10 @@ export function ThemeToggle() {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
+  const positionClasses = position === "right" ? "bottom-6 right-6" : "bottom-6 left-6"
+
   return (
-    <div className="fixed bottom-6 left-6 z-50">
+    <div className={`fixed ${positionClasses} z-50`}>
       <Button
         variant="outline"
         size="icon"

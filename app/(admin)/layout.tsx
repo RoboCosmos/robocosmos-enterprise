@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { AdminSidebar } from "@/components/admin-sidebar"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { useState } from "react"
 
 export default function AdminLayout({
@@ -19,6 +20,7 @@ export default function AdminLayout({
       >
         {children}
       </main>
+      <ThemeToggle position="right" />
     </div>
   )
 }

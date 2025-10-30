@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { CustomerSidebar } from "@/components/customer-sidebar"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { useState } from "react"
 
 export default function CustomerLayout({
@@ -19,6 +20,7 @@ export default function CustomerLayout({
       >
         {children}
       </main>
+      <ThemeToggle position="right" />
     </div>
   )
 }

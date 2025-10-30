@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { DealerSidebar } from "@/components/dealer-sidebar"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { useState } from "react"
 
 export default function MerchantLayout({
@@ -19,6 +20,7 @@ export default function MerchantLayout({
       >
         {children}
       </main>
+      <ThemeToggle position="right" />
     </div>
   )
 }
