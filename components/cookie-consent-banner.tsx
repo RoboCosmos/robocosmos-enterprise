@@ -72,7 +72,7 @@ export function CookieConsentBanner() {
   return (
     <>
       {/* Compact Banner */}
-      <Card className="fixed bottom-4 right-4 z-50 max-w-md border-zinc-800 bg-zinc-900/95 p-4 shadow-2xl backdrop-blur-sm">
+      <Card className="fixed bottom-4 right-4 z-50 max-w-md border-zinc-800 bg-card p-4 shadow-2xl backdrop-blur-sm">
         <div className="flex items-start gap-3">
           <Cookie className="mt-1 h-5 w-5 flex-shrink-0 text-blue-500" />
           <div className="flex-1 space-y-3">
@@ -101,7 +101,7 @@ export function CookieConsentBanner() {
 
       {/* Detailed Modal */}
       <Dialog open={showDetails} onOpenChange={setShowDetails}>
-        <DialogContent className="max-w-2xl border-zinc-800 bg-zinc-900 text-white">
+        <DialogContent className="max-w-2xl border-zinc-800 bg-card text-white">
           <DialogHeader>
             <DialogTitle className="text-xl">Cookie-Einstellungen</DialogTitle>
             <DialogDescription className="text-gray-400">

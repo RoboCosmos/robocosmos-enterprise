@@ -53,7 +53,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden items-center gap-8 lg:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             <Link
               href="/robots"
               className="text-sm font-bold text-muted-foreground transition-colors hover:text-foreground"
