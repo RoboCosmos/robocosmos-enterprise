@@ -499,7 +499,7 @@ export default function RobotsPage() {
       <div className="container mx-auto px-4 py-6 lg:py-8 lg:px-8">
         <div className="mb-6 lg:mb-8 flex flex-col lg:flex-row items-start lg:items-start justify-between gap-4">
           <div>
-            <h1 className="text-2xl lg:text-4xl font-bold text-foreground">Roboter erwerben</h1>
+            <h1 className="text-2xl lg:text-4xl font-bold text-foreground">Robo-Marktplatz</h1>
             <p className="mt-1 lg:mt-2 text-sm lg:text-lg text-muted-foreground">
               Finden Sie den perfekten Roboter für Ihr Unternehmen - zum Kauf oder zur Miete
             </p>

@@ -7,11 +7,21 @@ import { Globe, LayoutDashboard, Menu, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
+
+const navigationItems = [
+  { label: "Robo-Marktplatz", href: "/robots" },
+  { label: "Händler finden", href: "/merchant-directory" },
+  { label: "Händler werden", href: "/become-merchant" },
+  { label: "Über uns", href: "/about" },
+  { label: "Support", href: "/help" },
+]
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [language, setLanguage] = useState("de")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +30,9 @@ export function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const activePage = navigationItems.find((item) => pathname === item.href)
+  const activePageLabel = activePage?.label
 
   return (
     <nav
@@ -54,36 +67,22 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-6 lg:flex">
-            <Link
-              href="/robots"
-              className="text-sm font-bold text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Roboter erwerben
-            </Link>
-            <Link
-              href="/merchant-directory"
-              className="text-sm font-bold text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Händler-Verzeichnis
-            </Link>
-            <Link
-              href="/become-merchant"
-              className="text-sm font-bold text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Händler werden
-            </Link>
-            <Link
-              href="/about"
-              className="text-sm font-bold text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Über uns
-            </Link>
-            <Link
-              href="/help"
-              className="text-sm font-bold text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Support
-            </Link>
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-sm font-bold transition-all duration-200 ${
+                    isActive
+                      ? "text-foreground underline underline-offset-4 decoration-2 scale-105"
+                      : "text-muted-foreground hover:text-foreground hover:scale-105"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Right Side Actions */}
@@ -99,50 +98,29 @@ export function Header() {
                 <SheetHeader>
                   <SheetTitle className="text-left font-bold">Navigation</SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col gap-2 mt-8">
-                  <Link
-                    href="/robots"
-                    className="flex items-center justify-between py-2 px-3 rounded-md hover:bg-accent transition-colors font-semibold"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Roboter erwerben
-                    <ChevronRight className="h-4 w-4" />
-                  </Link>
-                  <Link
-                    href="/merchant-directory"
-                    className="flex items-center justify-between py-2 px-3 rounded-md hover:bg-accent transition-colors font-semibold"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Händler-Verzeichnis
-                    <ChevronRight className="h-4 w-4" />
-                  </Link>
-
-                  <div className="border-t border-border pt-4 flex flex-col gap-2">
-                    <Link
-                      href="/become-merchant"
-                      className="flex items-center justify-between py-2 px-3 rounded-md hover:bg-accent transition-colors font-semibold"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Händler werden
-                      <ChevronRight className="h-4 w-4" />
-                    </Link>
-                    <Link
-                      href="/about"
-                      className="flex items-center justify-between py-2 px-3 rounded-md hover:bg-accent transition-colors font-semibold"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Über uns
-                      <ChevronRight className="h-4 w-4" />
-                    </Link>
-                    <Link
-                      href="/help"
-                      className="flex items-center justify-between py-2 px-3 rounded-md hover:bg-accent transition-colors font-semibold"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Support
-                      <ChevronRight className="h-4 w-4" />
-                    </Link>
+                {activePageLabel && (
+                  <div className="mt-4 p-4 bg-primary/10 rounded-lg border border-primary/20">
+                    <p className="text-xs text-muted-foreground mb-1">Aktuelle Seite</p>
+                    <h2 className="text-xl font-black text-foreground">{activePageLabel}</h2>
                   </div>
+                )}
+                <div className="flex flex-col gap-2 mt-8">
+                  {navigationItems.map((item) => {
+                    const isActive = pathname === item.href
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`flex items-center justify-between py-2 px-3 rounded-md transition-colors font-semibold ${
+                          isActive ? "bg-primary text-primary-foreground" : "hover:bg-accent"
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                        <ChevronRight className="h-4 w-4" />
+                      </Link>
+                    )
+                  })}
 
                   <div className="border-t border-border pt-4 flex flex-col gap-2">
                     <Link

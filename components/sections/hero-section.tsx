@@ -52,14 +52,18 @@ export function HeroSection() {
           </div>
 
           <h1 className="mb-4 lg:mb-6 text-balance text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground animate-fade-in-up animation-delay-200">
-            Mieten. Kaufen.{" "}
+            Humanoide Robotik.{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-primary bg-clip-text text-transparent">
-              Automatisieren.
+              Für jedes Gewerbe. 
             </span>
           </h1>
+
+          <h2 className="text-xl lg:text-3xl font-bold">
+              <span className="text-foreground">Vergleichen. Mieten. Skalieren.</span>
+            </h2>
+
           <p className="mb-8 lg:mb-10 text-pretty text-base lg:text-lg xl:text-xl text-muted-foreground animate-fade-in-up animation-delay-300">
-            Deutschlands führende B2B-Plattform für Kauf und RaaS (Miete) von Gewerberobotern. Verifiziert, transparent
-            und effizient.
+            Reagieren Sie auf den Fachkräftemangel. Auf Deutschlands B2B-Marktplatz für humanoide Robotik
           </p>
           <div className="flex flex-col items-center justify-center gap-3 lg:gap-4 sm:flex-row animate-fade-in-up animation-delay-400">
             <Link href="/robots" className="w-full sm:w-auto">
@@ -67,16 +71,7 @@ export function HeroSection() {
                 size="lg"
                 className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105 text-sm lg:text-base"
               >
-                B2B-Katalog durchsuchen
-              </Button>
-            </Link>
-            <Link href="/merchant-directory" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto border-border text-foreground hover:bg-accent bg-accent/50 backdrop-blur-sm text-sm lg:text-base"
-              >
-                Händler entdecken
+                Roboter entdecken
               </Button>
             </Link>
           </div>
