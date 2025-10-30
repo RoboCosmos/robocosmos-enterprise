@@ -6,9 +6,9 @@
 /* Light Mode colors (default) - Darker modern gray aesthetic */
 :root {
   /* Adjusted to darker, more muted gray tones for sophisticated appearance */
-  --background: oklch(0.88 0.008 264);
-  --foreground: oklch(0.18 0.015 264);
-  --card: oklch(0.92 0.008 264);
+  --background: oklch(0.96 0.008 264);
+  --foreground: oklch(0.12 0.015 264);
+  --card: oklch(0.94 0.008 264);
   --card-foreground: oklch(0.18 0.015 264);
   --popover: oklch(0.92 0.008 264);
   --popover-foreground: oklch(0.18 0.015 264);
