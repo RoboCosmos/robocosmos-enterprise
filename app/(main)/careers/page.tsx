@@ -165,15 +165,14 @@ export default function CareersPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-gray-900 to-gray-900" />
 
         <div className="container relative z-10 mx-auto px-4">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center px-10">
             {/* Left: Text Content */}
             <div className="space-y-6">
               <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
-                Die nächste Stufe der Robotik mitgestalten.
+                Den Deutschen Markt der Robotik mitgestalten.
               </h1>
               <p className="text-lg text-gray-300 md:text-xl">
-                Werden Sie Teil unseres disruptiven B2B-Marktplatzes. Wir suchen die besten Köpfe für die
-                Automatisierung in Deutschland.
+                Werden Sie Teil unseres B2B-Marktplatzes. Wir suchen die besten Köpfe für die Automatisierung in Deutschland.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700" asChild>
@@ -199,7 +198,7 @@ export default function CareersPage() {
       </section>
 
       {/* Why Join Us Section */}
-      <section className="bg-gray-900 py-20">
+      <section className="bg-gray-900 py-10">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-white md:text-4xl">Warum RoboCosmos?</h2>
@@ -207,13 +206,13 @@ export default function CareersPage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {/* Card 1: Disruptive Mission */}
+            {/* Card 1: Zukunftsorientierte Mission */}
             <Card className="border-gray-800 bg-gray-800/50">
               <CardHeader>
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
                   <Lightbulb className="h-6 w-6 text-blue-500" />
                 </div>
-                <CardTitle className="text-white">Echte Disruption</CardTitle>
+                <CardTitle className="text-white">Arbeiten in einer wachsenden Branche</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
@@ -259,7 +258,7 @@ export default function CareersPage() {
       <Separator className="bg-gray-800" />
 
       {/* Open Positions Section */}
-      <section id="open-positions" className="bg-gray-900 py-20">
+      <section id="open-positions" className="bg-gray-900 py-10">
         <div className="container mx-auto px-4">
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-white md:text-4xl">Offene Stellen</h2>

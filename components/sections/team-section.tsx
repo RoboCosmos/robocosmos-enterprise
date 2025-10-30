@@ -2,10 +2,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const teamMembers = [
-  { name: "Max Mustermann", title: "CEO & Mitgründer", initials: "MM" },
-  { name: "Anna Schmidt", title: "Leitung Technik", initials: "AS" },
-  { name: "Thomas Weber", title: "VP Vertrieb", initials: "TW" },
-  { name: "Lisa Müller", title: "Leitung Operations", initials: "LM" },
+  { name: "Marcel Mustermann", title: "CEO & Mitgründer", initials: "MM" },
+  { name: "Eric Schmidt", title: "CEO & Mitgründer", initials: "ES" },
+  { name: "Thomas Weber", title: "Entwicklung", initials: "TW" },
 ]
 
 export function TeamSection() {

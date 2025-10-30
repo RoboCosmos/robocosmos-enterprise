@@ -4,13 +4,13 @@ import { useState } from "react"
 export function AboutHeroSection() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
 
-  const videos = ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roboter_hebt_Karton_mit_menschlichen_Bewegungen-BLlasdsma4DNRGZJHJvMRDiGwVGfnm.mp4", "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roboter_schwei%C3%9Ft_mit_menschlichen_Bewegungen-LWNFjhH9Vtzm7DmZcfrdnKCyC3lomP.mp4"]
+  const videos = ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roboter_schwei%C3%9Ft_mit_menschlichen_Bewegungen-LWNFjhH9Vtzm7DmZcfrdnKCyC3lomP.mp4", "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Roboter_hebt_Karton_mit_menschlichen_Bewegungen-BLlasdsma4DNRGZJHJvMRDiGwVGfnm.mp4"]
 
   const handleVideoEnd = () => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length)
   }
   return (
-    <section className="relative h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video
           key={currentVideoIndex}
@@ -27,9 +27,12 @@ export function AboutHeroSection() {
       </div>
 
       <div className="container relative z-10 mx-auto px-4 text-center">
-        <h1 className="mb-4 md:mb-6 text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-          Wir gestalten die Zukunft der gewerblichen Automation.
-        </h1>
+        <h1 className="mb-4 lg:mb-6 text-balance text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground animate-fade-in-up animation-delay-200">
+            Wir gestalten die Zukunft der gewerblichen{" "}
+            <span className="bg-gradient-to-r from-cyan-400 to-primary bg-clip-text text-transparent">
+              Automation
+            </span>
+          </h1>
         <p className="mx-auto max-w-3xl text-base md:text-xl text-muted-foreground px-4">
           Wir sind RoboCosmos Enterprise – Ihr zentraler Marktplatz für die effiziente Beschaffung und den Einsatz
           humanoider Roboter in Deutschland.
