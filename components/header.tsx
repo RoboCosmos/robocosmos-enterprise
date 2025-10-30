@@ -23,7 +23,7 @@ export function Header() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-all duration-300 text-popover ${
         isScrolled ? "h-16 bg-card/80 backdrop-blur-sm border-b border-border" : "h-24 bg-transparent"
       }`}
     >

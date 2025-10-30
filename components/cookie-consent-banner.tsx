@@ -130,7 +130,7 @@ export function CookieConsentBanner() {
                   className="data-[state=checked]:bg-blue-600"
                 />
               </div>
-              <Separator className="bg-zinc-800" />
+              <Separator className="bg-slate-800" />
             </div>
 
             {/* Analytics Cookies */}
@@ -152,7 +152,7 @@ export function CookieConsentBanner() {
                   className="data-[state=checked]:bg-blue-600"
                 />
               </div>
-              <Separator className="bg-zinc-800" />
+              <Separator className="bg-slate-800" />
             </div>
 
             {/* Marketing Cookies */}
