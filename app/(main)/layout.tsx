@@ -1,7 +1,7 @@
 import type React from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { SourceAIButton } from "@/components/source-ai-button"
+import { CosmosAIButton } from "@/components/cosmos-ai-button"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function MainLayout({
@@ -14,7 +14,7 @@ export default function MainLayout({
       <Header />
       {children}
       <Footer />
-      <SourceAIButton />
+      <CosmosAIButton />
       <ThemeToggle position="left" />
     </>
   )

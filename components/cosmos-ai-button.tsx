@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/sheet"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Bot, Send, Sparkles } from "lucide-react"
+import { Send, Sparkles } from "lucide-react"
 
-export function SourceAIButton() {
+export function CosmosAIButton() {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -30,7 +30,7 @@ export function SourceAIButton() {
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
-            Source AI
+            Cosmos AI
           </SheetTitle>
           <SheetDescription>Frage mich relevante Fragen.</SheetDescription>
         </SheetHeader>

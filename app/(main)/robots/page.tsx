@@ -561,7 +561,7 @@ export default function RobotsPage() {
               <div className="relative">
                 <Sparkles className="absolute left-3 lg:left-4 top-1/2 h-4 w-4 lg:h-5 lg:w-5 -translate-y-1/2 text-primary pointer-events-none" />
                 <span className="absolute left-9 lg:left-12 top-1/2 -translate-y-1/2 text-xs lg:text-sm font-semibold text-primary pointer-events-none">
-                  Source AI
+                  Cosmos AI
                 </span>
                 <Input
                   placeholder="Beschreiben Sie Ihre Aufgabe..."

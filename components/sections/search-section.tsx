@@ -33,7 +33,7 @@ export function SearchSection() {
             <div className="relative">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
                 <Sparkles className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium text-primary">Source AI</span>
+                <span className="text-sm font-medium text-primary">Cosmos AI</span>
               </div>
               <Input
                 type="text"
