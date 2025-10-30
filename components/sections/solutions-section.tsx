@@ -25,10 +25,10 @@ export function SolutionsSection() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 lg:mb-16 text-center">
           <h2 className="mb-3 lg:mb-4 text-balance text-2xl lg:text-4xl xl:text-5xl font-bold text-foreground">
-            Kein Black-Box-Kauf. Echte Transparenz.
+            {"Zentraler Beschaffungskosmos"}
           </h2>
           <p className="text-base lg:text-lg text-muted-foreground">
-            Unser kuratierter B2B-Marktplatz löst die Ineffizienzen des traditionellen Einkaufs.
+            Vereinen Sie Miete und Kauf auf einer einzigen Plattform. Sparen Sie Zeit und Ressourcen im Einkaufsprozess.
           </p>
         </div>
 

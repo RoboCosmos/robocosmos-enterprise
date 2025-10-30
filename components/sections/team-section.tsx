@@ -13,7 +13,7 @@ export function TeamSection() {
     <section className="bg-muted/30 py-12 md:py-20">
       <div className="container mx-auto px-4">
         <h2 className="mb-8 md:mb-12 text-center text-2xl md:text-4xl font-bold text-foreground">
-          Treffen Sie die Experten (Platzhalter)
+          Das RoboCosmos-Team: Ihre Partner für die Automation.
         </h2>
 
         <div className="mx-auto grid max-w-6xl gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-4">

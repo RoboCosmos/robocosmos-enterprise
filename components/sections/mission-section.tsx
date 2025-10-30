@@ -12,11 +12,7 @@ export function MissionSection() {
           <Card>
             <CardContent className="p-6 md:p-8">
               <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-                Der traditionelle Beschaffungsprozess für Industrierobotik ist oft langsam, intransparent und
-                kapitalintensiv. Die richtige Lösung und zuverlässige Partner zu finden, erfordert erheblichen Zeit- und
-                Ressourcenaufwand. Unternehmen stehen vor der Herausforderung, Angebote objektiv zu vergleichen, die
-                Gesamtbetriebskosten (TCO) zu verstehen und auf flexible Einsatzmodelle zuzugreifen, die ihren
-                betrieblichen Anforderungen entsprechen.
+                Der traditionelle Beschaffungsprozess für komplexe gewerbliche Robotik ist gekennzeichnet durch Intransparenz, hohe Anfangsinvestitionen und eine langwierige Lösungsfindung. Unternehmen benötigen objektive Entscheidungsgrundlagen (ROI, TCO) und flexible Einsatzmodelle, um ihre operativen Herausforderungen (z.B. Fachkräftemangel) schnell und vertrauensvoll zu lösen.
               </p>
             </CardContent>
           </Card>
