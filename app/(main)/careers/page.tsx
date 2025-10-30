@@ -159,23 +159,24 @@ export default function CareersPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-gray-900 via-gray-900 to-gray-900/95 py-20 md:py-32">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-gray-900 to-gray-900" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-background via-background to-background/95 py-20 md:py-32">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background" />
 
         <div className="container relative z-10 mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center px-10">
             {/* Left: Text Content */}
             <div className="space-y-6">
-              <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
                 Den Deutschen Markt der Robotik mitgestalten.
               </h1>
-              <p className="text-lg text-gray-300 md:text-xl">
-                Werden Sie Teil unseres B2B-Marktplatzes. Wir suchen die besten Köpfe für die Automatisierung in Deutschland.
+              <p className="text-lg text-foreground md:text-xl">
+                Werden Sie Teil unseres B2B-Marktplatzes. Wir suchen die besten Köpfe für die Automatisierung in
+                Deutschland.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700" asChild>
+                <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
                   <a href="#open-positions">
                     <Briefcase className="mr-2 h-5 w-5" />
                     Zu den offenen Stellen
@@ -198,39 +199,39 @@ export default function CareersPage() {
       </section>
 
       {/* Why Join Us Section */}
-      <section className="bg-gray-900 py-10">
+      <section className="bg-background py-10">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-white md:text-4xl">Warum RoboCosmos?</h2>
-            <p className="mt-4 text-lg text-gray-400">Drei gute Gründe, Teil unseres Teams zu werden</p>
+            <h2 className="text-3xl font-bold text-foreground md:text-4xl">Warum RoboCosmos?</h2>
+            <p className="mt-4 text-lg text-muted-foreground">Drei gute Gründe, Teil unseres Teams zu werden</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
             {/* Card 1: Zukunftsorientierte Mission */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <Lightbulb className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <Lightbulb className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Arbeiten in einer wachsenden Branche</CardTitle>
+                <CardTitle className="text-foreground">Arbeiten in einer wachsenden Branche</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">
+                <p className="text-muted-foreground">
                   Arbeiten Sie am Puls der Zeit und gestalten Sie den Handel mit Robotern neu.
                 </p>
               </CardContent>
             </Card>
 
             {/* Card 2: Tech Focus */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <Cpu className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <Cpu className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Technologie-Vorsprung</CardTitle>
+                <CardTitle className="text-foreground">Technologie-Vorsprung</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">
+                <p className="text-muted-foreground">
                   Modernster Tech-Stack (Next.js, Supabase, KI-Agenten) und direkter Zugang zu neuesten
                   Robotik-Modellen.
                 </p>
@@ -238,15 +239,15 @@ export default function CareersPage() {
             </Card>
 
             {/* Card 3: Startup Culture */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <Rocket className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <Rocket className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Flache Hierarchien</CardTitle>
+                <CardTitle className="text-foreground">Flache Hierarchien</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">
+                <p className="text-muted-foreground">
                   Volle Verantwortung vom ersten Tag, schnelle Entscheidungen und flexible Arbeitsmodelle.
                 </p>
               </CardContent>
@@ -255,32 +256,34 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <Separator className="bg-gray-800" />
+      <Separator className="bg-border" />
 
       {/* Open Positions Section */}
-      <section id="open-positions" className="bg-gray-900 py-10">
+      <section id="open-positions" className="bg-background py-10">
         <div className="container mx-auto px-4">
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-white md:text-4xl">Offene Stellen</h2>
-            <p className="mt-4 text-lg text-gray-400">Finden Sie Ihre perfekte Position bei RoboCosmos Enterprise</p>
+            <h2 className="text-3xl font-bold text-foreground md:text-4xl">Offene Stellen</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Finden Sie Ihre perfekte Position bei RoboCosmos Enterprise
+            </p>
           </div>
 
           {/* Filter Row */}
           <div className="mb-8 flex flex-col gap-4 sm:flex-row">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Stelle oder Abteilung suchen..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="border-gray-700 bg-gray-800 pl-10 text-white placeholder:text-gray-500"
+                className="border-border bg-input pl-10 text-foreground placeholder:text-muted-foreground"
               />
             </div>
             <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
-              <SelectTrigger className="w-full border-gray-700 bg-gray-800 text-white sm:w-[250px]">
+              <SelectTrigger className="w-full border-border bg-input text-foreground sm:w-[250px]">
                 <SelectValue placeholder="Abteilung wählen" />
               </SelectTrigger>
-              <SelectContent className="border-gray-700 bg-gray-800">
+              <SelectContent className="border-border bg-card">
                 <SelectItem value="all">Alle Abteilungen</SelectItem>
                 <SelectItem value="tech">Tech & Development</SelectItem>
                 <SelectItem value="sales">Sales & Partnerships</SelectItem>
@@ -293,21 +296,17 @@ export default function CareersPage() {
           {/* Job Listings Accordion */}
           <Accordion type="single" collapsible className="space-y-4">
             {filteredJobs.map((job) => (
-              <AccordionItem
-                key={job.id}
-                value={job.id}
-                className="rounded-lg border border-gray-800 bg-gray-800/50 px-6"
-              >
+              <AccordionItem key={job.id} value={job.id} className="rounded-lg border border-border bg-card px-6">
                 <AccordionTrigger className="hover:no-underline">
                   <div className="flex flex-1 items-start justify-between gap-4 text-left">
                     <div>
-                      <h3 className="text-lg font-semibold text-white">{job.title}</h3>
-                      <div className="mt-2 flex items-center gap-2 text-sm text-gray-400">
+                      <h3 className="text-lg font-semibold text-foreground">{job.title}</h3>
+                      <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
                         <MapPin className="h-4 w-4" />
                         {job.location}
                       </div>
                     </div>
-                    <Badge variant="outline" className="border-blue-600 text-blue-500">
+                    <Badge variant="outline" className="border-primary text-primary">
                       {job.department === "tech" && "Tech"}
                       {job.department === "sales" && "Sales"}
                       {job.department === "operations" && "Operations"}
@@ -317,16 +316,16 @@ export default function CareersPage() {
                 </AccordionTrigger>
                 <AccordionContent className="space-y-6 pt-4">
                   <div>
-                    <h4 className="mb-2 font-semibold text-white">Kurzbeschreibung</h4>
-                    <p className="text-gray-400">{job.description}</p>
+                    <h4 className="mb-2 font-semibold text-foreground">Kurzbeschreibung</h4>
+                    <p className="text-muted-foreground">{job.description}</p>
                   </div>
 
                   <div>
-                    <h4 className="mb-3 font-semibold text-white">Ihre Aufgaben</h4>
+                    <h4 className="mb-3 font-semibold text-foreground">Ihre Aufgaben</h4>
                     <ul className="space-y-2">
                       {job.tasks.map((task, index) => (
-                        <li key={index} className="flex items-start gap-2 text-gray-400">
-                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500" />
+                        <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                           {task}
                         </li>
                       ))}
@@ -334,11 +333,11 @@ export default function CareersPage() {
                   </div>
 
                   <div>
-                    <h4 className="mb-3 font-semibold text-white">Ihr Profil</h4>
+                    <h4 className="mb-3 font-semibold text-foreground">Ihr Profil</h4>
                     <ul className="space-y-2">
                       {job.profile.map((item, index) => (
-                        <li key={index} className="flex items-start gap-2 text-gray-400">
-                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500" />
+                        <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                           {item}
                         </li>
                       ))}
@@ -346,7 +345,7 @@ export default function CareersPage() {
                   </div>
 
                   <div className="pt-4">
-                    <Button className="bg-blue-600 hover:bg-blue-700" asChild>
+                    <Button className="bg-primary hover:bg-primary/90" asChild>
                       <Link href="/contact">
                         Jetzt bewerben
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -359,105 +358,109 @@ export default function CareersPage() {
           </Accordion>
 
           {filteredJobs.length === 0 && (
-            <div className="rounded-lg border border-gray-800 bg-gray-800/50 p-12 text-center">
-              <p className="text-gray-400">Keine Stellen gefunden. Versuchen Sie es mit anderen Suchbegriffen.</p>
+            <div className="rounded-lg border border-border bg-card p-12 text-center">
+              <p className="text-muted-foreground">
+                Keine Stellen gefunden. Versuchen Sie es mit anderen Suchbegriffen.
+              </p>
             </div>
           )}
         </div>
       </section>
 
-      <Separator className="bg-gray-800" />
+      <Separator className="bg-border" />
 
       {/* Culture & Benefits Section */}
-      <section className="bg-gray-900 py-20">
+      <section className="bg-background py-20">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-white md:text-4xl">Ihre Vorteile bei RoboCosmos</h2>
-            <p className="mt-4 text-lg text-gray-400">Was wir Ihnen als Arbeitgeber bieten</p>
+            <h2 className="text-3xl font-bold text-foreground md:text-4xl">Ihre Vorteile bei RoboCosmos</h2>
+            <p className="mt-4 text-lg text-muted-foreground">Was wir Ihnen als Arbeitgeber bieten</p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* Benefit 1 */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <Laptop className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <Laptop className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Flexibles & Remote-Arbeiten</CardTitle>
+                <CardTitle className="text-foreground">Flexibles & Remote-Arbeiten</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">
+                <p className="text-muted-foreground">
                   Arbeiten Sie von überall aus und gestalten Sie Ihre Arbeitszeiten flexibel.
                 </p>
               </CardContent>
             </Card>
 
             {/* Benefit 2 */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <Wallet className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <Wallet className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Wettbewerbsfähiges Gehalt</CardTitle>
+                <CardTitle className="text-foreground">Wettbewerbsfähiges Gehalt</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">Faire Vergütung mit attraktiven Bonusmodellen und Beteiligungsoptionen.</p>
+                <p className="text-muted-foreground">
+                  Faire Vergütung mit attraktiven Bonusmodellen und Beteiligungsoptionen.
+                </p>
               </CardContent>
             </Card>
 
             {/* Benefit 3 */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <GraduationCap className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <GraduationCap className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Weiterbildungsbudget</CardTitle>
+                <CardTitle className="text-foreground">Weiterbildungsbudget</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">
+                <p className="text-muted-foreground">
                   Jährliches Budget für Konferenzen, Kurse und persönliche Weiterentwicklung.
                 </p>
               </CardContent>
             </Card>
 
             {/* Benefit 4 */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <Pizza className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <Pizza className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Regelmäßige Team-Events</CardTitle>
+                <CardTitle className="text-foreground">Regelmäßige Team-Events</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">
+                <p className="text-muted-foreground">
                   Gemeinsame Aktivitäten, Offsites und Team-Building für starken Zusammenhalt.
                 </p>
               </CardContent>
             </Card>
 
             {/* Benefit 5 */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <Zap className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <Zap className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Modernes Equipment</CardTitle>
+                <CardTitle className="text-foreground">Modernes Equipment</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">Neueste Hardware und Software-Tools für produktives Arbeiten.</p>
+                <p className="text-muted-foreground">Neueste Hardware und Software-Tools für produktives Arbeiten.</p>
               </CardContent>
             </Card>
 
             {/* Benefit 6 */}
-            <Card className="border-gray-800 bg-gray-800/50">
+            <Card className="border-border bg-card">
               <CardHeader>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600/10">
-                  <HeartHandshake className="h-6 w-6 text-blue-500" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <HeartHandshake className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-white">Gesundheitsförderung</CardTitle>
+                <CardTitle className="text-foreground">Gesundheitsförderung</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">
+                <p className="text-muted-foreground">
                   Zuschüsse für Fitnessstudio, Sportangebote und betriebliche Gesundheitsvorsorge.
                 </p>
               </CardContent>
@@ -467,19 +470,19 @@ export default function CareersPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="bg-gradient-to-b from-gray-900 to-gray-900/95 py-20">
+      <section className="bg-gradient-to-b from-background to-background/95 py-20">
         <div className="container mx-auto px-4">
-          <Card className="border-blue-600/20 bg-gradient-to-br from-blue-600/10 to-gray-800/50">
+          <Card className="border-primary/20 bg-gradient-to-br from-primary/10 to-card">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl font-bold text-white md:text-4xl">
+              <CardTitle className="text-3xl font-bold text-foreground md:text-4xl">
                 Bereit für den nächsten Schritt?
               </CardTitle>
-              <CardDescription className="mt-4 text-lg text-gray-300">
+              <CardDescription className="mt-4 text-lg text-foreground">
                 Wir freuen uns auf Ihre Bewerbung und darauf, Sie in unserem Team willkommen zu heißen!
               </CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center pt-6">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
                 <a href="#open-positions">
                   <Briefcase className="mr-2 h-5 w-5" />
                   Alle Jobs ansehen

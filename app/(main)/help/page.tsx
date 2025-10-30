@@ -5,7 +5,7 @@ import { HelpContactSection } from "@/components/sections/help-contact-section"
 
 export default function HelpPage() {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12 space-y-12">
         <HelpHeroSection />
         <HelpTopicsSection />

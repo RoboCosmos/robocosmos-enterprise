@@ -6,7 +6,7 @@ import { SlaContactSection } from "@/components/sections/sla-contact-section"
 
 export default function SLAPage() {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-background">
       <SlaHeroSection />
       <div className="container mx-auto px-4 lg:px-8 max-w-6xl py-12 space-y-12">
         <PlatformAvailabilitySection />
