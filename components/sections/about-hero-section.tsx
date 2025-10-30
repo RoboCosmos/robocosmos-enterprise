@@ -1,4 +1,4 @@
-import Image from "next/image"
+"use client"
 import { useState } from "react"
 
 export function AboutHeroSection() {
@@ -31,7 +31,8 @@ export function AboutHeroSection() {
           Wir gestalten die Zukunft der gewerblichen Automation.
         </h1>
         <p className="mx-auto max-w-3xl text-base md:text-xl text-muted-foreground px-4">
-          Wir sind RoboCosmos Enterprise – Ihr zentraler Marktplatz für die effiziente Beschaffung und den Einsatz humanoider Roboter in Deutschland.
+          Wir sind RoboCosmos Enterprise – Ihr zentraler Marktplatz für die effiziente Beschaffung und den Einsatz
+          humanoider Roboter in Deutschland.
         </p>
       </div>
     </section>
