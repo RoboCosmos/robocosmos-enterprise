@@ -19,6 +19,7 @@ import {
   Sliders,
   ShieldCheck,
   FileCheck,
+  Headphones,
 } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -43,6 +44,7 @@ const navigationGroups = [
     items: [
       { name: "Transaktionen", href: "/admin/transactions", icon: DollarSign },
       { name: "Streitschlichtung", href: "/admin/disputes", icon: ShieldAlert },
+      { name: "Support-Tickets", href: "/admin/support", icon: Headphones }, // Added Support-Tickets menu item
     ],
   },
   {

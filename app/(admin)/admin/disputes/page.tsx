@@ -1,33 +1,31 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { AdminPageHeader } from "@/components/admin/admin-page-header"
+import { AdminFilterBar } from "@/components/admin/admin-filter-bar"
+import { AdminDataTable } from "@/components/admin/admin-data-table"
 import { Card, CardContent } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import {
-  Search,
-  MoreHorizontal,
-  Eye,
-  UserCheck,
-  Flag,
-  CheckCircle,
-  Archive,
-  Lock,
-  AlertTriangle,
-  DollarSign,
-} from "lucide-react"
+import { Search, Lock, AlertTriangle, DollarSign } from "lucide-react"
+
+interface Dispute {
+  id: string
+  caseId: string
+  subject: string
+  booking: string
+  customer: string
+  merchant: string
+  status: "Neu" | "In Bearbeitung" | "Wartet auf Antwort" | "Gelöst" | "Geschlossen"
+  priority: "Niedrig" | "Mittel" | "Hoch" | "Kritisch"
+  assignedTo: string
+  lastActivity: string
+}
 
 const mockConversations = [
   {
@@ -110,272 +108,203 @@ const mockConversations = [
 ]
 
 export default function DisputesPage() {
+  const router = useRouter()
+  const [searchValue, setSearchValue] = useState("")
+  const [statusFilter, setStatusFilter] = useState("all")
+  const [priorityFilter, setPriorityFilter] = useState("all")
+  const [assignedFilter, setAssignedFilter] = useState("all")
+
   const [selectedConversation, setSelectedConversation] = useState(mockConversations[0])
   const [searchQuery, setSearchQuery] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
   const [adminReply, setAdminReply] = useState("")
 
-  return (
-    <div className="space-y-8">
-      <h1 className="text-2xl font-bold text-foreground mb-6">Support & Streitschlichtung</h1>
+  const disputes: Dispute[] = [
+    {
+      id: "1",
+      caseId: "#D101",
+      subject: "Roboter defekt",
+      booking: "#B1001",
+      customer: "Kunde AG",
+      merchant: "RoboTrade GmbH",
+      status: "Neu",
+      priority: "Hoch",
+      assignedTo: "Unzugewiesen",
+      lastActivity: "Heute",
+    },
+    {
+      id: "2",
+      caseId: "#D102",
+      subject: "Mietzeitraum Problem",
+      booking: "#B1003",
+      customer: "Logistik Inc.",
+      merchant: "RoboTrade GmbH",
+      status: "In Bearbeitung",
+      priority: "Mittel",
+      assignedTo: "Admin A",
+      lastActivity: "Gestern",
+    },
+    {
+      id: "3",
+      caseId: "#D103",
+      subject: "Frage zur Rechnung",
+      booking: "#B1002",
+      customer: "Bau GmbH",
+      merchant: "Händler Müller",
+      status: "Gelöst",
+      priority: "Niedrig",
+      assignedTo: "Admin B",
+      lastActivity: "25. Okt. 2025",
+    },
+  ]
 
-      <Tabs defaultValue="disputes" className="space-y-8">
-        <TabsList className="bg-muted border-border">
-          <TabsTrigger
-            value="disputes"
-            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-          >
-            Streitfälle
-          </TabsTrigger>
-          <TabsTrigger
-            value="tickets"
-            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-          >
-            Support Tickets
-          </TabsTrigger>
-          <TabsTrigger
-            value="reviews"
-            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-          >
-            Bewertungs-Moderation
-          </TabsTrigger>
-          <TabsTrigger
-            value="messages"
-            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-          >
-            Nachrichten-Moderation
-          </TabsTrigger>
+  const getStatusBadgeVariant = (status: Dispute["status"]) => {
+    switch (status) {
+      case "Neu":
+        return "destructive"
+      case "In Bearbeitung":
+        return "default"
+      case "Wartet auf Antwort":
+        return "secondary"
+      case "Gelöst":
+        return "default"
+      case "Geschlossen":
+        return "secondary"
+      default:
+        return "secondary"
+    }
+  }
+
+  const getPriorityBadgeVariant = (priority: Dispute["priority"]) => {
+    switch (priority) {
+      case "Kritisch":
+      case "Hoch":
+        return "destructive"
+      case "Mittel":
+        return "default"
+      case "Niedrig":
+        return "secondary"
+      default:
+        return "secondary"
+    }
+  }
+
+  const disputeColumns = [
+    {
+      header: "Fall-ID",
+      accessor: "caseId" as keyof Dispute,
+      render: (row: Dispute) => <span className="font-mono text-sm font-medium text-foreground">{row.caseId}</span>,
+    },
+    {
+      header: "Betreff / Buchung",
+      accessor: "subject" as keyof Dispute,
+      render: (row: Dispute) => (
+        <div>
+          <div className="font-medium text-foreground">{row.subject}</div>
+          <div className="text-sm text-muted-foreground">({row.booking})</div>
+        </div>
+      ),
+    },
+    {
+      header: "Kunde",
+      accessor: "customer" as keyof Dispute,
+      render: (row: Dispute) => <span className="text-foreground">{row.customer}</span>,
+    },
+    {
+      header: "Händler",
+      accessor: "merchant" as keyof Dispute,
+      render: (row: Dispute) => <span className="text-foreground">{row.merchant}</span>,
+    },
+    {
+      header: "Status",
+      accessor: "status" as keyof Dispute,
+      render: (row: Dispute) => <Badge variant={getStatusBadgeVariant(row.status)}>{row.status}</Badge>,
+    },
+    {
+      header: "Priorität",
+      accessor: "priority" as keyof Dispute,
+      render: (row: Dispute) => <Badge variant={getPriorityBadgeVariant(row.priority)}>{row.priority}</Badge>,
+    },
+    {
+      header: "Zugewiesen an",
+      accessor: "assignedTo" as keyof Dispute,
+      render: (row: Dispute) => <span className="text-muted-foreground">{row.assignedTo}</span>,
+    },
+    {
+      header: "Letzte Aktivität",
+      accessor: "lastActivity" as keyof Dispute,
+      render: (row: Dispute) => <span className="text-foreground">{row.lastActivity}</span>,
+    },
+    {
+      header: "Aktionen",
+      accessor: "id" as keyof Dispute,
+      render: (row: Dispute) => (
+        <Button size="sm" onClick={() => router.push(`/admin/disputes/${row.id}`)}>
+          Fall ansehen
+        </Button>
+      ),
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <AdminPageHeader
+        title="Support & Streitschlichtung"
+        subtitle="Verwalten Sie Streitfälle, Support-Tickets und moderieren Sie Bewertungen und Nachrichten."
+      />
+
+      <Tabs defaultValue="disputes" className="space-y-6">
+        <TabsList>
+          <TabsTrigger value="disputes">Streitfälle</TabsTrigger>
+          <TabsTrigger value="tickets">Support Tickets</TabsTrigger>
+          <TabsTrigger value="reviews">Bewertungs-Moderation</TabsTrigger>
+          <TabsTrigger value="messages">Nachrichten-Moderation</TabsTrigger>
         </TabsList>
 
-        {/* Disputes Tab Content */}
-        <TabsContent value="disputes" className="space-y-8">
-          <Card className="bg-card border-border">
-            <CardContent className="p-6">
-              <div className="flex flex-col lg:flex-row gap-4">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Suche nach Fall-ID, Kunde, Händler..."
-                    className="pl-10 bg-background border-input text-foreground"
-                  />
-                </div>
+        <TabsContent value="disputes" className="space-y-6">
+          <AdminFilterBar
+            searchPlaceholder="Suche nach Fall-ID, Kunde, Händler..."
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+            filters={[
+              {
+                placeholder: "Status",
+                options: [
+                  { label: "Alle", value: "all" },
+                  { label: "Neu", value: "new" },
+                  { label: "In Bearbeitung", value: "in-progress" },
+                  { label: "Wartet auf Antwort", value: "waiting" },
+                  { label: "Gelöst", value: "resolved" },
+                  { label: "Geschlossen", value: "closed" },
+                ],
+                defaultValue: "all",
+                onChange: setStatusFilter,
+              },
+              {
+                placeholder: "Priorität",
+                options: [
+                  { label: "Alle", value: "all" },
+                  { label: "Niedrig", value: "low" },
+                  { label: "Mittel", value: "medium" },
+                  { label: "Hoch", value: "high" },
+                  { label: "Kritisch", value: "critical" },
+                ],
+                defaultValue: "all",
+                onChange: setPriorityFilter,
+              },
+              {
+                placeholder: "Zugewiesen an",
+                options: [
+                  { label: "Alle Admins", value: "all" },
+                  { label: "Admin A", value: "admin-a" },
+                  { label: "Admin B", value: "admin-b" },
+                ],
+                defaultValue: "all",
+                onChange: setAssignedFilter,
+              },
+            ]}
+          />
 
-                {/* Status Filter */}
-                <Select defaultValue="all">
-                  <SelectTrigger className="w-full lg:w-[200px] bg-background border-input text-foreground">
-                    <SelectValue placeholder="Status" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover border-border">
-                    <SelectItem value="all">Alle</SelectItem>
-                    <SelectItem value="new">Neu</SelectItem>
-                    <SelectItem value="in-progress">In Bearbeitung</SelectItem>
-                    <SelectItem value="waiting">Wartet auf Antwort</SelectItem>
-                    <SelectItem value="resolved">Gelöst</SelectItem>
-                    <SelectItem value="closed">Geschlossen</SelectItem>
-                  </SelectContent>
-                </Select>
-
-                {/* Priority Filter */}
-                <Select defaultValue="all">
-                  <SelectTrigger className="w-full lg:w-[200px] bg-background border-input text-foreground">
-                    <SelectValue placeholder="Priorität" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover border-border">
-                    <SelectItem value="all">Alle</SelectItem>
-                    <SelectItem value="low">Niedrig</SelectItem>
-                    <SelectItem value="medium">Mittel</SelectItem>
-                    <SelectItem value="high">Hoch</SelectItem>
-                    <SelectItem value="critical">Kritisch</SelectItem>
-                  </SelectContent>
-                </Select>
-
-                {/* Assigned To Filter */}
-                <Select defaultValue="all">
-                  <SelectTrigger className="w-full lg:w-[200px] bg-background border-input text-foreground">
-                    <SelectValue placeholder="Zugewiesen an" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover border-border">
-                    <SelectItem value="all">Alle Admins</SelectItem>
-                    <SelectItem value="admin-a">Admin A</SelectItem>
-                    <SelectItem value="admin-b">Admin B</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card border-border">
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="border-border hover:bg-muted/50">
-                      <TableHead className="text-muted-foreground">Fall-ID</TableHead>
-                      <TableHead className="text-muted-foreground">Betreff / Buchung</TableHead>
-                      <TableHead className="text-muted-foreground">Kunde</TableHead>
-                      <TableHead className="text-muted-foreground">Händler</TableHead>
-                      <TableHead className="text-muted-foreground">Status</TableHead>
-                      <TableHead className="text-muted-foreground">Priorität</TableHead>
-                      <TableHead className="text-muted-foreground">Zugewiesen an</TableHead>
-                      <TableHead className="text-muted-foreground">Letzte Aktivität</TableHead>
-                      <TableHead className="text-muted-foreground text-right">Aktionen</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow className="border-border hover:bg-muted/50">
-                      <TableCell className="font-medium text-foreground">#D101</TableCell>
-                      <TableCell className="text-foreground">
-                        <div>Roboter defekt</div>
-                        <div className="text-sm text-muted-foreground">(#B1001)</div>
-                      </TableCell>
-                      <TableCell className="text-foreground">Kunde AG</TableCell>
-                      <TableCell className="text-foreground">RoboTrade GmbH</TableCell>
-                      <TableCell>
-                        <Badge variant="destructive">Neu</Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant="destructive">Hoch</Badge>
-                      </TableCell>
-                      <TableCell className="text-muted-foreground">Unzugewiesen</TableCell>
-                      <TableCell className="text-foreground">Heute</TableCell>
-                      <TableCell className="text-right">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="bg-popover border-border">
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <Eye className="mr-2 h-4 w-4" />
-                              Fall ansehen/bearbeiten
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <UserCheck className="mr-2 h-4 w-4" />
-                              Zuweisen an...
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <Flag className="mr-2 h-4 w-4" />
-                              Priorität ändern...
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator className="bg-border" />
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <CheckCircle className="mr-2 h-4 w-4" />
-                              Status auf 'Gelöst' setzen
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-muted-foreground hover:bg-accent">
-                              <Archive className="mr-2 h-4 w-4" />
-                              Fall schließen
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow className="border-border hover:bg-muted/50">
-                      <TableCell className="font-medium text-foreground">#D102</TableCell>
-                      <TableCell className="text-foreground">
-                        <div>Mietzeitraum Problem</div>
-                        <div className="text-sm text-muted-foreground">(#B1003)</div>
-                      </TableCell>
-                      <TableCell className="text-foreground">Logistik Inc.</TableCell>
-                      <TableCell className="text-foreground">RoboTrade GmbH</TableCell>
-                      <TableCell>
-                        <Badge className="bg-chart-4 text-white border-transparent">In Bearbeitung</Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Badge className="bg-chart-3 text-white border-transparent">Mittel</Badge>
-                      </TableCell>
-                      <TableCell className="text-foreground">Admin A</TableCell>
-                      <TableCell className="text-foreground">Gestern</TableCell>
-                      <TableCell className="text-right">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="bg-popover border-border">
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <Eye className="mr-2 h-4 w-4" />
-                              Fall ansehen/bearbeiten
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <UserCheck className="mr-2 h-4 w-4" />
-                              Zuweisen an...
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <Flag className="mr-2 h-4 w-4" />
-                              Priorität ändern...
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator className="bg-border" />
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <CheckCircle className="mr-2 h-4 w-4" />
-                              Status auf 'Gelöst' setzen
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-muted-foreground hover:bg-accent">
-                              <Archive className="mr-2 h-4 w-4" />
-                              Fall schließen
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow className="border-border hover:bg-muted/50">
-                      <TableCell className="font-medium text-foreground">#D103</TableCell>
-                      <TableCell className="text-foreground">
-                        <div>Frage zur Rechnung</div>
-                        <div className="text-sm text-muted-foreground">(#B1002)</div>
-                      </TableCell>
-                      <TableCell className="text-foreground">Bau GmbH</TableCell>
-                      <TableCell className="text-foreground">Händler Müller</TableCell>
-                      <TableCell>
-                        <Badge className="bg-chart-1 text-white border-transparent">Gelöst</Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant="secondary">Niedrig</Badge>
-                      </TableCell>
-                      <TableCell className="text-foreground">Admin B</TableCell>
-                      <TableCell className="text-foreground">25. Okt. 2025</TableCell>
-                      <TableCell className="text-right">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="bg-popover border-border">
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <Eye className="mr-2 h-4 w-4" />
-                              Fall ansehen/bearbeiten
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <UserCheck className="mr-2 h-4 w-4" />
-                              Zuweisen an...
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <Flag className="mr-2 h-4 w-4" />
-                              Priorität ändern...
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator className="bg-border" />
-                            <DropdownMenuItem className="text-foreground hover:bg-accent">
-                              <CheckCircle className="mr-2 h-4 w-4" />
-                              Status auf 'Gelöst' setzen
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="text-muted-foreground hover:bg-accent">
-                              <Archive className="mr-2 h-4 w-4" />
-                              Fall schließen
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-            </CardContent>
-          </Card>
+          <AdminDataTable columns={disputeColumns} data={disputes} />
         </TabsContent>
 
         <TabsContent value="tickets">
@@ -397,10 +326,8 @@ export default function DisputesPage() {
         </TabsContent>
 
         <TabsContent value="messages" className="space-y-6">
-          {/* Subtitle */}
           <p className="text-muted-foreground">Überwachen Sie Konversationen.</p>
 
-          {/* Filter & Search Bar */}
           <Card className="bg-card border-border">
             <CardContent className="p-6">
               <div className="flex flex-col lg:flex-row gap-4">
@@ -414,7 +341,7 @@ export default function DisputesPage() {
                   />
                 </div>
 
-                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <Select defaultValue="all">
                   <SelectTrigger className="w-full lg:w-[250px] bg-background border-input text-foreground">
                     <SelectValue placeholder="Status" />
                   </SelectTrigger>
@@ -431,9 +358,7 @@ export default function DisputesPage() {
             </CardContent>
           </Card>
 
-          {/* Two-Pane Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-6">
-            {/* Left Pane: Conversation List */}
             <Card className="bg-card border-border">
               <CardContent className="p-0">
                 <div className="divide-y divide-border">
@@ -459,10 +384,8 @@ export default function DisputesPage() {
               </CardContent>
             </Card>
 
-            {/* Right Pane: Message Content View */}
             <Card className="bg-card border-border">
               <CardContent className="p-6 space-y-6">
-                {/* Admin Action Header */}
                 <div className="space-y-2 pb-4 border-b border-border">
                   <h3 className="text-lg font-semibold text-foreground">{selectedConversation.subject}</h3>
                   <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -478,7 +401,6 @@ export default function DisputesPage() {
                   </div>
                 </div>
 
-                {/* Admin Action Buttons */}
                 <div className="flex flex-wrap gap-3">
                   <Button variant="destructive" size="sm">
                     <Lock className="mr-2 h-4 w-4" />
@@ -502,7 +424,6 @@ export default function DisputesPage() {
                   </Button>
                 </div>
 
-                {/* Message Thread */}
                 <div className="space-y-4 max-h-[400px] overflow-y-auto">
                   {selectedConversation.messages.map((message) => (
                     <div key={message.id} className="space-y-2 p-4 rounded-lg bg-muted/30 border border-border">
@@ -517,7 +438,6 @@ export default function DisputesPage() {
                   ))}
                 </div>
 
-                {/* Admin Reply Box */}
                 <div className="space-y-3 pt-4 border-t border-border">
                   <div className="text-sm font-semibold text-foreground">
                     Offizielle Admin-Antwort (sichtbar für beide Parteien)
