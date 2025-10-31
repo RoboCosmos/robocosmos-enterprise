@@ -70,35 +70,37 @@ export default function AttributesPage() {
     {
       header: "Datentyp",
       accessor: "dataType" as keyof Attribute,
-      render: (value: string) => (
+      render: (row: Attribute) => (
         <Badge variant="secondary" className="font-mono text-xs">
-          {value}
+          {row.dataType}
         </Badge>
       ),
     },
     {
       header: "Zugeordnete Kategorien",
       accessor: "categories" as keyof Attribute,
-      render: (value: string[]) => <span className="text-sm text-muted-foreground">{value.join(", ")}</span>,
+      render: (row: Attribute) => <span className="text-sm text-muted-foreground">{row.categories.join(", ")}</span>,
     },
     {
       header: "Als Filter verwenden?",
       accessor: "useAsFilter" as keyof Attribute,
-      render: (value: boolean) => <Badge variant={value ? "default" : "outline"}>{value ? "Ja" : "Nein"}</Badge>,
+      render: (row: Attribute) => (
+        <Badge variant={row.useAsFilter ? "default" : "outline"}>{row.useAsFilter ? "Ja" : "Nein"}</Badge>
+      ),
     },
     {
       header: "Aktionen",
       accessor: "id" as keyof Attribute,
-      render: (value: string) => (
+      render: (row: Attribute) => (
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" onClick={() => handleEdit(value)} className="h-8 px-2">
+          <Button variant="ghost" size="sm" onClick={() => handleEdit(row.id)} className="h-8 px-2">
             <Edit className="h-4 w-4 mr-1" />
             Bearbeiten
           </Button>
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => handleDeactivate(value)}
+            onClick={() => handleDeactivate(row.id)}
             className="h-8 px-2 text-destructive hover:text-destructive"
           >
             <Power className="h-4 w-4 mr-1" />

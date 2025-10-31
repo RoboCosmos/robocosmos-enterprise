@@ -68,52 +68,40 @@ export default function CategoriesPage() {
     {
       header: "Kategorie-Name",
       accessor: "name" as keyof Category,
+      render: (row: Category) => <div className="font-medium text-foreground">{row.name}</div>,
     },
     {
       header: "Übergeordnete Kategorie",
       accessor: "parent" as keyof Category,
+      render: (row: Category) => <div className="text-muted-foreground">{row.parent || "-"}</div>,
     },
     {
       header: "Anzahl Inserate",
       accessor: "listingCount" as keyof Category,
+      render: (row: Category) => <div className="text-foreground">{row.listingCount}</div>,
     },
     {
       header: "Status",
       accessor: "status" as keyof Category,
+      render: (row: Category) => <Badge variant={row.status === "Aktiv" ? "default" : "secondary"}>{row.status}</Badge>,
     },
     {
       header: "Aktionen",
       accessor: "id" as keyof Category,
+      render: (row: Category) => (
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="sm" onClick={() => handleEdit(row.id)} className="h-8 gap-2">
+            <Edit className="h-3.5 w-3.5" />
+            Bearbeiten
+          </Button>
+          <Button variant="ghost" size="sm" onClick={() => handleToggleStatus(row.id)} className="h-8 gap-2">
+            <Power className="h-3.5 w-3.5" />
+            {row.status === "Aktiv" ? "Deaktivieren" : "Aktivieren"}
+          </Button>
+        </div>
+      ),
     },
   ]
-
-  const renderCell = (category: Category, column: string) => {
-    switch (column) {
-      case "name":
-        return <div className="font-medium text-foreground">{category.name}</div>
-      case "parent":
-        return <div className="text-muted-foreground">{category.parent || "-"}</div>
-      case "listingCount":
-        return <div className="text-foreground">{category.listingCount}</div>
-      case "status":
-        return <Badge variant={category.status === "Aktiv" ? "default" : "secondary"}>{category.status}</Badge>
-      case "id":
-        return (
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={() => handleEdit(category.id)} className="h-8 gap-2">
-              <Edit className="h-3.5 w-3.5" />
-              Bearbeiten
-            </Button>
-            <Button variant="ghost" size="sm" onClick={() => handleToggleStatus(category.id)} className="h-8 gap-2">
-              <Power className="h-3.5 w-3.5" />
-              {category.status === "Aktiv" ? "Deaktivieren" : "Aktivieren"}
-            </Button>
-          </div>
-        )
-      default:
-        return null
-    }
-  }
 
   return (
     <div className="space-y-6">
@@ -126,7 +114,7 @@ export default function CategoriesPage() {
         }}
       />
 
-      <AdminDataTable columns={columns} data={categories} renderCell={renderCell} />
+      <AdminDataTable columns={columns} data={categories} />
     </div>
   )
 }
