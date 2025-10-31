@@ -17,6 +17,7 @@ import {
   X,
   FolderTree,
   Sliders,
+  ShieldCheck,
 } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -28,6 +29,7 @@ const navigationGroups = [
     items: [
       { name: "Dashboard", href: "/admin/dashboard", icon: Home },
       { name: "Benutzerverwaltung", href: "/admin/users", icon: Users },
+      { name: "Händler-Verifizierung", href: "/admin/verification/merchants", icon: ShieldCheck },
       { name: "Inseratsverwaltung", href: "/admin/listings", icon: LayoutList },
       { name: "Kategorie-Management", href: "/admin/categories", icon: FolderTree },
       { name: "Attribut-Management", href: "/admin/attributes", icon: Sliders },
