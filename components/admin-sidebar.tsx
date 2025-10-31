@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 import {
   Home,
   Users,
-  LayoutList,
+  Database,
   CalendarCheck,
   DollarSign,
   ShieldAlert,
@@ -15,12 +15,12 @@ import {
   LogOut,
   Menu,
   X,
-  FolderTree,
-  Sliders,
+  Tag,
+  SlidersHorizontal,
   ShieldCheck,
-  FileCheck,
-  Headphones,
-  Wallet,
+  CheckSquare,
+  LifeBuoy,
+  Landmark,
 } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -28,25 +28,30 @@ import { Separator } from "@/components/ui/separator"
 
 const navigationGroups = [
   {
-    title: "KERNVERWALTUNG",
+    title: "OPERATIVES (Tägliche To-Dos)",
     items: [
       { name: "Dashboard", href: "/admin/dashboard", icon: Home },
-      { name: "Benutzerverwaltung", href: "/admin/users", icon: Users },
       { name: "Händler-Verifizierung", href: "/admin/verification/merchants", icon: ShieldCheck },
-      { name: "Inserats-Verifizierung", href: "/admin/verification/listings", icon: FileCheck },
-      { name: "Inseratsverwaltung", href: "/admin/listings", icon: LayoutList },
-      { name: "Kategorie-Management", href: "/admin/categories", icon: FolderTree },
-      { name: "Attribut-Management", href: "/admin/attributes", icon: Sliders },
+      { name: "Inserats-Verifizierung", href: "/admin/verification/listings", icon: CheckSquare },
       { name: "Buchungsverwaltung", href: "/admin/bookings", icon: CalendarCheck },
+      { name: "Streitschlichtung", href: "/admin/disputes", icon: ShieldAlert },
+    ],
+  },
+  {
+    title: "STAMMDATEN (Verwaltung)",
+    items: [
+      { name: "Benutzerverwaltung", href: "/admin/users", icon: Users },
+      { name: "Inseratsverwaltung", href: "/admin/listings", icon: Database },
+      { name: "Kategorie-Management", href: "/admin/categories", icon: Tag },
+      { name: "Attribut-Management", href: "/admin/attributes", icon: SlidersHorizontal },
     ],
   },
   {
     title: "FINANZEN & SUPPORT",
     items: [
       { name: "Transaktionen", href: "/admin/transactions", icon: DollarSign },
-      { name: "Auszahlungs-Management", href: "/admin/payouts", icon: Wallet },
-      { name: "Streitschlichtung", href: "/admin/disputes", icon: ShieldAlert },
-      { name: "Support-Tickets", href: "/admin/support", icon: Headphones },
+      { name: "Auszahlungs-Management", href: "/admin/payouts", icon: Landmark },
+      { name: "Support-Tickets", href: "/admin/support", icon: LifeBuoy },
     ],
   },
   {
