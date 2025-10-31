@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 type CalendarEvent = {
   id: string
@@ -100,7 +101,9 @@ export default function MerchantCalendar() {
             Verwalten Sie die Verfügbarkeit Ihrer Roboter
           </p>
         </div>
-        <Button className="bg-primary hover:bg-primary/90">Zeitraum blockieren</Button>
+        <Button className="bg-primary hover:bg-primary/90" asChild>
+          <Link href="/merchant/calendar/new">Zeitraum blockieren</Link>
+        </Button>
       </div>
 
       <Card>
