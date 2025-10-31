@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Plus } from "lucide-react"
+import Link from "next/link"
 
 // Placeholder data for contracts
 const contracts = [
@@ -56,9 +57,11 @@ export default function MerchantContractsPage() {
           <h1 className="text-2xl md:text-3xl font-bold text-foreground">Angebote & Verträge</h1>
           <p className="text-sm md:text-base text-muted-foreground mt-1">Verwalten Sie Ihre Angebote und Verträge</p>
         </div>
-        <Button className="w-fit">
-          <Plus className="mr-2 h-4 w-4" />
-          Neues Angebot erstellen
+        <Button asChild className="w-fit">
+          <Link href="/merchant/contracts/new">
+            <Plus className="mr-2 h-4 w-4" />
+            Neues Angebot erstellen
+          </Link>
         </Button>
       </div>
 
