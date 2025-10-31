@@ -85,14 +85,14 @@ export default function AdminListingsPage() {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      active: { label: "Aktiv", className: "bg-green-600 hover:bg-green-700" },
-      under_review: { label: "Prüfung ausstehend", className: "bg-yellow-600 hover:bg-yellow-700" },
-      paused: { label: "Pausiert", className: "bg-gray-600 hover:bg-gray-700" },
-      rejected: { label: "Abgelehnt", className: "bg-red-600 hover:bg-red-700" },
-      draft: { label: "Entwurf", className: "bg-gray-500 hover:bg-gray-600" },
+      active: { label: "Aktiv", variant: "default" as const },
+      under_review: { label: "Prüfung ausstehend", variant: "outline" as const },
+      paused: { label: "Pausiert", variant: "secondary" as const },
+      rejected: { label: "Abgelehnt", variant: "destructive" as const },
+      draft: { label: "Entwurf", variant: "secondary" as const },
     }
     const config = statusConfig[status as keyof typeof statusConfig]
-    return <Badge className={config.className}>{config.label}</Badge>
+    return <Badge variant={config.variant}>{config.label}</Badge>
   }
 
   const toggleListing = (id: string) => {
@@ -109,29 +109,25 @@ export default function AdminListingsPage() {
 
   return (
     <div className="space-y-8">
-      {/* Page Title */}
-      <h1 className="text-2xl font-bold text-gray-100">Inseratsverwaltung</h1>
+      <h1 className="text-2xl font-bold text-foreground">Inseratsverwaltung</h1>
 
-      {/* Filter and Search Bar */}
-      <Card className="bg-gray-900 border-gray-800">
+      <Card>
         <CardContent className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {/* Search Input */}
             <div className="lg:col-span-2">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Suche nach Modell, Händler, ID..."
-                  className="pl-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-400"
+                  className="pl-10"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
             </div>
 
-            {/* Merchant Filter */}
             <Select value={merchantFilter} onValueChange={setMerchantFilter}>
-              <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
+              <SelectTrigger>
                 <SelectValue placeholder="Alle Händler" />
               </SelectTrigger>
               <SelectContent>
@@ -141,9 +137,8 @@ export default function AdminListingsPage() {
               </SelectContent>
             </Select>
 
-            {/* Status Filter */}
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
+              <SelectTrigger>
                 <SelectValue placeholder="Alle" />
               </SelectTrigger>
               <SelectContent>
@@ -156,9 +151,8 @@ export default function AdminListingsPage() {
               </SelectContent>
             </Select>
 
-            {/* Type Filter */}
             <Select value={typeFilter} onValueChange={setTypeFilter}>
-              <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
+              <SelectTrigger>
                 <SelectValue placeholder="Alle" />
               </SelectTrigger>
               <SelectContent>
@@ -169,10 +163,9 @@ export default function AdminListingsPage() {
             </Select>
           </div>
 
-          {/* Category Filter - Second Row */}
           <div className="mt-4">
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="bg-gray-900 border-gray-700 text-white max-w-xs">
+              <SelectTrigger className="max-w-xs">
                 <SelectValue placeholder="Alle Kategorien" />
               </SelectTrigger>
               <SelectContent>
@@ -186,27 +179,26 @@ export default function AdminListingsPage() {
         </CardContent>
       </Card>
 
-      {/* Listing Table */}
-      <Card className="bg-gray-900 border-gray-800">
+      <Card>
         <CardContent className="p-0">
           <Table>
             <TableHeader>
-              <TableRow className="border-gray-700 hover:bg-gray-800">
+              <TableRow>
                 <TableHead className="w-12">
                   <Checkbox checked={selectedListings.length === filteredListings.length} onCheckedChange={toggleAll} />
                 </TableHead>
-                <TableHead className="text-gray-300">Roboter</TableHead>
-                <TableHead className="text-gray-300">Händler</TableHead>
-                <TableHead className="text-gray-300">Status</TableHead>
-                <TableHead className="text-gray-300">Typ</TableHead>
-                <TableHead className="text-gray-300">Preis (Miete/Kauf)</TableHead>
-                <TableHead className="text-gray-300">Erstellt am</TableHead>
-                <TableHead className="text-gray-300 text-right">Aktionen</TableHead>
+                <TableHead>Roboter</TableHead>
+                <TableHead>Händler</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Typ</TableHead>
+                <TableHead>Preis (Miete/Kauf)</TableHead>
+                <TableHead>Erstellt am</TableHead>
+                <TableHead className="text-right">Aktionen</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredListings.map((listing) => (
-                <TableRow key={listing.id} className="border-gray-700 hover:bg-gray-750">
+                <TableRow key={listing.id}>
                   <TableCell>
                     <Checkbox
                       checked={selectedListings.includes(listing.id)}
@@ -222,14 +214,14 @@ export default function AdminListingsPage() {
                         height={40}
                         className="rounded"
                       />
-                      <span className="font-medium text-white">{listing.model}</span>
+                      <span className="font-medium text-foreground">{listing.model}</span>
                     </div>
                   </TableCell>
-                  <TableCell className="text-gray-300">{listing.merchant}</TableCell>
+                  <TableCell className="text-muted-foreground">{listing.merchant}</TableCell>
                   <TableCell>{getStatusBadge(listing.status)}</TableCell>
-                  <TableCell className="text-gray-300">{listing.type}</TableCell>
-                  <TableCell className="text-gray-300">{listing.price}</TableCell>
-                  <TableCell className="text-gray-300">{listing.createdAt}</TableCell>
+                  <TableCell className="text-muted-foreground">{listing.type}</TableCell>
+                  <TableCell className="text-muted-foreground">{listing.price}</TableCell>
+                  <TableCell className="text-muted-foreground">{listing.createdAt}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -237,42 +229,42 @@ export default function AdminListingsPage() {
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="bg-gray-800 border-gray-700">
-                        <DropdownMenuItem className="text-gray-300 focus:bg-gray-700 focus:text-white">
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem>
                           <Eye className="mr-2 h-4 w-4" />
                           Details ansehen
                         </DropdownMenuItem>
-                        <DropdownMenuItem className="text-gray-300 focus:bg-gray-700 focus:text-white">
+                        <DropdownMenuItem>
                           <Edit className="mr-2 h-4 w-4" />
                           Inserat bearbeiten
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator className="bg-gray-700" />
+                        <DropdownMenuSeparator />
                         {listing.status === "under_review" && (
                           <>
-                            <DropdownMenuItem className="text-gray-300 focus:bg-gray-700 focus:text-white">
+                            <DropdownMenuItem>
                               <CheckCircle className="mr-2 h-4 w-4" />
                               Freischalten
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-red-600 focus:bg-gray-700 focus:text-red-500">
+                            <DropdownMenuItem className="text-destructive">
                               <XCircle className="mr-2 h-4 w-4" />
                               Ablehnen
                             </DropdownMenuItem>
                           </>
                         )}
                         {listing.status === "active" && (
-                          <DropdownMenuItem className="text-gray-300 focus:bg-gray-700 focus:text-white">
+                          <DropdownMenuItem>
                             <PauseCircle className="mr-2 h-4 w-4" />
                             Pausieren
                           </DropdownMenuItem>
                         )}
                         {listing.status === "paused" && (
-                          <DropdownMenuItem className="text-gray-300 focus:bg-gray-700 focus:text-white">
+                          <DropdownMenuItem>
                             <PlayCircle className="mr-2 h-4 w-4" />
                             Aktivieren
                           </DropdownMenuItem>
                         )}
-                        <DropdownMenuSeparator className="bg-gray-700" />
-                        <DropdownMenuItem className="text-red-600 focus:bg-gray-700 focus:text-red-500">
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="text-destructive">
                           <Trash className="mr-2 h-4 w-4" />
                           Inserat löschen
                         </DropdownMenuItem>

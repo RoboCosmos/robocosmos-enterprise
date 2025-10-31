@@ -60,52 +60,32 @@ export default function BookingsManagementPage() {
   const getStatusBadgeVariant = (status: string) => {
     switch (status) {
       case "active":
-        return "default" // green
+        return "default"
       case "completed":
-        return "secondary" // gray
+        return "secondary"
       case "pending":
-        return "outline" // yellow
+        return "outline"
       default:
         return "secondary"
     }
   }
 
-  const getStatusBadgeClass = (status: string) => {
-    switch (status) {
-      case "active":
-        return "bg-green-600 hover:bg-green-700"
-      case "completed":
-        return "bg-gray-600 hover:bg-gray-700"
-      case "pending":
-        return "bg-yellow-600 hover:bg-yellow-700"
-      default:
-        return ""
-    }
-  }
-
   return (
     <div className="space-y-8">
-      {/* Page Title */}
-      <h1 className="text-2xl font-bold text-gray-100">Buchungsverwaltung</h1>
+      <h1 className="text-2xl font-bold text-foreground">Buchungsverwaltung</h1>
 
-      {/* Filter and Search Bar */}
-      <Card className="bg-gray-900 border-gray-800">
+      <Card>
         <CardContent className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {/* Search Input */}
             <div className="lg:col-span-2">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Suche nach Buchungs-ID, Kunde, Händler..."
-                  className="pl-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-500"
-                />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input placeholder="Suche nach Buchungs-ID, Kunde, Händler..." className="pl-10" />
               </div>
             </div>
 
-            {/* Status Filter */}
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
+              <SelectTrigger>
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
@@ -118,9 +98,8 @@ export default function BookingsManagementPage() {
               </SelectContent>
             </Select>
 
-            {/* Type Filter */}
             <Select value={typeFilter} onValueChange={setTypeFilter}>
-              <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
+              <SelectTrigger>
                 <SelectValue placeholder="Typ" />
               </SelectTrigger>
               <SelectContent>
@@ -130,17 +109,15 @@ export default function BookingsManagementPage() {
               </SelectContent>
             </Select>
 
-            {/* Date Range Picker */}
             <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
-              <Input type="date" placeholder="Zeitraum" className="pl-10 bg-gray-900 border-gray-700 text-white" />
+              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+              <Input type="date" placeholder="Zeitraum" className="pl-10" />
             </div>
           </div>
 
-          {/* Second Row - Merchant Filter */}
           <div className="mt-4">
             <Select value={merchantFilter} onValueChange={setMerchantFilter}>
-              <SelectTrigger className="bg-gray-900 border-gray-700 text-white max-w-xs">
+              <SelectTrigger className="max-w-xs">
                 <SelectValue placeholder="Händler" />
               </SelectTrigger>
               <SelectContent>
@@ -153,46 +130,40 @@ export default function BookingsManagementPage() {
         </CardContent>
       </Card>
 
-      {/* Bookings Table */}
-      <Card className="bg-gray-900 border-gray-800">
+      <Card>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="border-gray-700 hover:bg-gray-750">
-                  <TableHead className="text-gray-300">Buchungs-ID</TableHead>
-                  <TableHead className="text-gray-300">Kunde</TableHead>
-                  <TableHead className="text-gray-300">Händler</TableHead>
-                  <TableHead className="text-gray-300">Roboter</TableHead>
-                  <TableHead className="text-gray-300">Typ</TableHead>
-                  <TableHead className="text-gray-300">Zeitraum (Miete)</TableHead>
-                  <TableHead className="text-gray-300">Preis</TableHead>
-                  <TableHead className="text-gray-300">Status</TableHead>
-                  <TableHead className="text-gray-300 text-right">Aktionen</TableHead>
+                <TableRow>
+                  <TableHead>Buchungs-ID</TableHead>
+                  <TableHead>Kunde</TableHead>
+                  <TableHead>Händler</TableHead>
+                  <TableHead>Roboter</TableHead>
+                  <TableHead>Typ</TableHead>
+                  <TableHead>Zeitraum (Miete)</TableHead>
+                  <TableHead>Preis</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Aktionen</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {bookings.map((booking) => (
-                  <TableRow key={booking.id} className="border-gray-700 hover:bg-gray-750">
-                    <TableCell className="font-medium text-white">{booking.id}</TableCell>
-                    <TableCell className="text-gray-300">{booking.customer}</TableCell>
-                    <TableCell className="text-gray-300">{booking.merchant}</TableCell>
-                    <TableCell className="text-gray-300">{booking.robot}</TableCell>
-                    <TableCell className="text-gray-300">{booking.type}</TableCell>
-                    <TableCell className="text-gray-300">{booking.period}</TableCell>
-                    <TableCell className="text-gray-300 font-semibold">{booking.price}</TableCell>
+                  <TableRow key={booking.id}>
+                    <TableCell className="font-medium text-foreground">{booking.id}</TableCell>
+                    <TableCell className="text-muted-foreground">{booking.customer}</TableCell>
+                    <TableCell className="text-muted-foreground">{booking.merchant}</TableCell>
+                    <TableCell className="text-muted-foreground">{booking.robot}</TableCell>
+                    <TableCell className="text-muted-foreground">{booking.type}</TableCell>
+                    <TableCell className="text-muted-foreground">{booking.period}</TableCell>
+                    <TableCell className="text-muted-foreground font-semibold">{booking.price}</TableCell>
                     <TableCell>
-                      <Badge
-                        variant={getStatusBadgeVariant(booking.status)}
-                        className={getStatusBadgeClass(booking.status)}
-                      >
-                        {booking.statusLabel}
-                      </Badge>
+                      <Badge variant={getStatusBadgeVariant(booking.status)}>{booking.statusLabel}</Badge>
                     </TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-400 hover:text-white">
+                          <Button variant="ghost" size="icon" className="h-8 w-8">
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -218,7 +189,7 @@ export default function BookingsManagementPage() {
                           )}
                           <DropdownMenuSeparator />
                           {booking.status !== "completed" && (
-                            <DropdownMenuItem className="text-red-600">
+                            <DropdownMenuItem className="text-destructive">
                               <Ban className="mr-2 h-4 w-4" />
                               Buchung stornieren
                             </DropdownMenuItem>
