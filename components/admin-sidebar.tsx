@@ -28,7 +28,7 @@ import { Separator } from "@/components/ui/separator"
 
 const navigationGroups = [
   {
-    title: "OPERATIVES (Tägliche To-Dos)",
+    title: "OPERATIVES",
     items: [
       { name: "Dashboard", href: "/admin/dashboard", icon: Home },
       { name: "Händler-Verifizierung", href: "/admin/verification/merchants", icon: ShieldCheck },
@@ -38,7 +38,7 @@ const navigationGroups = [
     ],
   },
   {
-    title: "STAMMDATEN (Verwaltung)",
+    title: "STAMMDATEN",
     items: [
       { name: "Benutzerverwaltung", href: "/admin/users", icon: Users },
       { name: "Inseratsverwaltung", href: "/admin/listings", icon: Database },
