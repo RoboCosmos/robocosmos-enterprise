@@ -19,47 +19,55 @@ import { Search, MoreHorizontal, Eye, UserCheck, Flag, CheckCircle, Archive } fr
 export default function DisputesPage() {
   return (
     <div className="space-y-8">
-      {/* Page Title */}
-      <h1 className="text-2xl font-bold text-gray-100 mb-6">Support & Streitschlichtung</h1>
+      <h1 className="text-2xl font-bold text-foreground mb-6">Support & Streitschlichtung</h1>
 
-      {/* Tab Navigation */}
       <Tabs defaultValue="disputes" className="space-y-8">
-        <TabsList className="bg-gray-800 border-gray-700">
-          <TabsTrigger value="disputes" className="data-[state=active]:bg-blue-600">
+        <TabsList className="bg-muted border-border">
+          <TabsTrigger
+            value="disputes"
+            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
             Streitfälle
           </TabsTrigger>
-          <TabsTrigger value="tickets" className="data-[state=active]:bg-blue-600">
+          <TabsTrigger
+            value="tickets"
+            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
             Support Tickets
           </TabsTrigger>
-          <TabsTrigger value="reviews" className="data-[state=active]:bg-blue-600">
+          <TabsTrigger
+            value="reviews"
+            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
             Bewertungs-Moderation
           </TabsTrigger>
-          <TabsTrigger value="messages" className="data-[state=active]:bg-blue-600">
+          <TabsTrigger
+            value="messages"
+            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
             Nachrichten-Moderation
           </TabsTrigger>
         </TabsList>
 
         {/* Disputes Tab Content */}
         <TabsContent value="disputes" className="space-y-8">
-          {/* Filter and Search Bar */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardContent className="p-6">
               <div className="flex flex-col lg:flex-row gap-4">
-                {/* Search Input */}
                 <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Suche nach Fall-ID, Kunde, Händler..."
-                    className="pl-10 bg-gray-900 border-gray-700 text-white"
+                    className="pl-10 bg-background border-input text-foreground"
                   />
                 </div>
 
                 {/* Status Filter */}
                 <Select defaultValue="all">
-                  <SelectTrigger className="w-full lg:w-[200px] bg-gray-900 border-gray-700 text-white">
+                  <SelectTrigger className="w-full lg:w-[200px] bg-background border-input text-foreground">
                     <SelectValue placeholder="Status" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectContent className="bg-popover border-border">
                     <SelectItem value="all">Alle</SelectItem>
                     <SelectItem value="new">Neu</SelectItem>
                     <SelectItem value="in-progress">In Bearbeitung</SelectItem>
@@ -71,10 +79,10 @@ export default function DisputesPage() {
 
                 {/* Priority Filter */}
                 <Select defaultValue="all">
-                  <SelectTrigger className="w-full lg:w-[200px] bg-gray-900 border-gray-700 text-white">
+                  <SelectTrigger className="w-full lg:w-[200px] bg-background border-input text-foreground">
                     <SelectValue placeholder="Priorität" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectContent className="bg-popover border-border">
                     <SelectItem value="all">Alle</SelectItem>
                     <SelectItem value="low">Niedrig</SelectItem>
                     <SelectItem value="medium">Mittel</SelectItem>
@@ -85,10 +93,10 @@ export default function DisputesPage() {
 
                 {/* Assigned To Filter */}
                 <Select defaultValue="all">
-                  <SelectTrigger className="w-full lg:w-[200px] bg-gray-900 border-gray-700 text-white">
+                  <SelectTrigger className="w-full lg:w-[200px] bg-background border-input text-foreground">
                     <SelectValue placeholder="Zugewiesen an" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectContent className="bg-popover border-border">
                     <SelectItem value="all">Alle Admins</SelectItem>
                     <SelectItem value="admin-a">Admin A</SelectItem>
                     <SelectItem value="admin-b">Admin B</SelectItem>
@@ -98,68 +106,66 @@ export default function DisputesPage() {
             </CardContent>
           </Card>
 
-          {/* Disputes Table */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="border-gray-700 hover:bg-gray-750">
-                      <TableHead className="text-gray-300">Fall-ID</TableHead>
-                      <TableHead className="text-gray-300">Betreff / Buchung</TableHead>
-                      <TableHead className="text-gray-300">Kunde</TableHead>
-                      <TableHead className="text-gray-300">Händler</TableHead>
-                      <TableHead className="text-gray-300">Status</TableHead>
-                      <TableHead className="text-gray-300">Priorität</TableHead>
-                      <TableHead className="text-gray-300">Zugewiesen an</TableHead>
-                      <TableHead className="text-gray-300">Letzte Aktivität</TableHead>
-                      <TableHead className="text-gray-300 text-right">Aktionen</TableHead>
+                    <TableRow className="border-border hover:bg-muted/50">
+                      <TableHead className="text-muted-foreground">Fall-ID</TableHead>
+                      <TableHead className="text-muted-foreground">Betreff / Buchung</TableHead>
+                      <TableHead className="text-muted-foreground">Kunde</TableHead>
+                      <TableHead className="text-muted-foreground">Händler</TableHead>
+                      <TableHead className="text-muted-foreground">Status</TableHead>
+                      <TableHead className="text-muted-foreground">Priorität</TableHead>
+                      <TableHead className="text-muted-foreground">Zugewiesen an</TableHead>
+                      <TableHead className="text-muted-foreground">Letzte Aktivität</TableHead>
+                      <TableHead className="text-muted-foreground text-right">Aktionen</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {/* Row 1: New, High Priority */}
-                    <TableRow className="border-gray-700 hover:bg-gray-750">
-                      <TableCell className="font-medium text-white">#D101</TableCell>
-                      <TableCell className="text-gray-300">
+                    <TableRow className="border-border hover:bg-muted/50">
+                      <TableCell className="font-medium text-foreground">#D101</TableCell>
+                      <TableCell className="text-foreground">
                         <div>Roboter defekt</div>
-                        <div className="text-sm text-gray-500">(#B1001)</div>
+                        <div className="text-sm text-muted-foreground">(#B1001)</div>
                       </TableCell>
-                      <TableCell className="text-gray-300">Kunde AG</TableCell>
-                      <TableCell className="text-gray-300">RoboTrade GmbH</TableCell>
+                      <TableCell className="text-foreground">Kunde AG</TableCell>
+                      <TableCell className="text-foreground">RoboTrade GmbH</TableCell>
                       <TableCell>
-                        <Badge className="bg-red-600 text-white">Neu</Badge>
+                        <Badge variant="destructive">Neu</Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-red-600 text-white">Hoch</Badge>
+                        <Badge variant="destructive">Hoch</Badge>
                       </TableCell>
-                      <TableCell className="text-gray-400">Unzugewiesen</TableCell>
-                      <TableCell className="text-gray-300">Heute</TableCell>
+                      <TableCell className="text-muted-foreground">Unzugewiesen</TableCell>
+                      <TableCell className="text-foreground">Heute</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="bg-gray-800 border-gray-700">
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                          <DropdownMenuContent align="end" className="bg-popover border-border">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <Eye className="mr-2 h-4 w-4" />
                               Fall ansehen/bearbeiten
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <UserCheck className="mr-2 h-4 w-4" />
                               Zuweisen an...
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <Flag className="mr-2 h-4 w-4" />
                               Priorität ändern...
                             </DropdownMenuItem>
-                            <DropdownMenuSeparator className="bg-gray-700" />
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuSeparator className="bg-border" />
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <CheckCircle className="mr-2 h-4 w-4" />
                               Status auf 'Gelöst' setzen
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-500 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-muted-foreground hover:bg-accent">
                               <Archive className="mr-2 h-4 w-4" />
                               Fall schließen
                             </DropdownMenuItem>
@@ -168,49 +174,48 @@ export default function DisputesPage() {
                       </TableCell>
                     </TableRow>
 
-                    {/* Row 2: In Progress, Medium Priority */}
-                    <TableRow className="border-gray-700 hover:bg-gray-750">
-                      <TableCell className="font-medium text-white">#D102</TableCell>
-                      <TableCell className="text-gray-300">
+                    <TableRow className="border-border hover:bg-muted/50">
+                      <TableCell className="font-medium text-foreground">#D102</TableCell>
+                      <TableCell className="text-foreground">
                         <div>Mietzeitraum Problem</div>
-                        <div className="text-sm text-gray-500">(#B1003)</div>
+                        <div className="text-sm text-muted-foreground">(#B1003)</div>
                       </TableCell>
-                      <TableCell className="text-gray-300">Logistik Inc.</TableCell>
-                      <TableCell className="text-gray-300">RoboTrade GmbH</TableCell>
+                      <TableCell className="text-foreground">Logistik Inc.</TableCell>
+                      <TableCell className="text-foreground">RoboTrade GmbH</TableCell>
                       <TableCell>
-                        <Badge className="bg-yellow-600 text-white">In Bearbeitung</Badge>
+                        <Badge className="bg-chart-4 text-white border-transparent">In Bearbeitung</Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-orange-600 text-white">Mittel</Badge>
+                        <Badge className="bg-chart-3 text-white border-transparent">Mittel</Badge>
                       </TableCell>
-                      <TableCell className="text-gray-300">Admin A</TableCell>
-                      <TableCell className="text-gray-300">Gestern</TableCell>
+                      <TableCell className="text-foreground">Admin A</TableCell>
+                      <TableCell className="text-foreground">Gestern</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="bg-gray-800 border-gray-700">
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                          <DropdownMenuContent align="end" className="bg-popover border-border">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <Eye className="mr-2 h-4 w-4" />
                               Fall ansehen/bearbeiten
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <UserCheck className="mr-2 h-4 w-4" />
                               Zuweisen an...
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <Flag className="mr-2 h-4 w-4" />
                               Priorität ändern...
                             </DropdownMenuItem>
-                            <DropdownMenuSeparator className="bg-gray-700" />
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuSeparator className="bg-border" />
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <CheckCircle className="mr-2 h-4 w-4" />
                               Status auf 'Gelöst' setzen
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-500 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-muted-foreground hover:bg-accent">
                               <Archive className="mr-2 h-4 w-4" />
                               Fall schließen
                             </DropdownMenuItem>
@@ -219,49 +224,48 @@ export default function DisputesPage() {
                       </TableCell>
                     </TableRow>
 
-                    {/* Row 3: Resolved, Low Priority */}
-                    <TableRow className="border-gray-700 hover:bg-gray-750">
-                      <TableCell className="font-medium text-white">#D103</TableCell>
-                      <TableCell className="text-gray-300">
+                    <TableRow className="border-border hover:bg-muted/50">
+                      <TableCell className="font-medium text-foreground">#D103</TableCell>
+                      <TableCell className="text-foreground">
                         <div>Frage zur Rechnung</div>
-                        <div className="text-sm text-gray-500">(#B1002)</div>
+                        <div className="text-sm text-muted-foreground">(#B1002)</div>
                       </TableCell>
-                      <TableCell className="text-gray-300">Bau GmbH</TableCell>
-                      <TableCell className="text-gray-300">Händler Müller</TableCell>
+                      <TableCell className="text-foreground">Bau GmbH</TableCell>
+                      <TableCell className="text-foreground">Händler Müller</TableCell>
                       <TableCell>
-                        <Badge className="bg-green-600 text-white">Gelöst</Badge>
+                        <Badge className="bg-chart-1 text-white border-transparent">Gelöst</Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-gray-600 text-white">Niedrig</Badge>
+                        <Badge variant="secondary">Niedrig</Badge>
                       </TableCell>
-                      <TableCell className="text-gray-300">Admin B</TableCell>
-                      <TableCell className="text-gray-300">25. Okt. 2025</TableCell>
+                      <TableCell className="text-foreground">Admin B</TableCell>
+                      <TableCell className="text-foreground">25. Okt. 2025</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="bg-gray-800 border-gray-700">
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                          <DropdownMenuContent align="end" className="bg-popover border-border">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <Eye className="mr-2 h-4 w-4" />
                               Fall ansehen/bearbeiten
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <UserCheck className="mr-2 h-4 w-4" />
                               Zuweisen an...
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <Flag className="mr-2 h-4 w-4" />
                               Priorität ändern...
                             </DropdownMenuItem>
-                            <DropdownMenuSeparator className="bg-gray-700" />
-                            <DropdownMenuItem className="text-gray-300 hover:bg-gray-700">
+                            <DropdownMenuSeparator className="bg-border" />
+                            <DropdownMenuItem className="text-foreground hover:bg-accent">
                               <CheckCircle className="mr-2 h-4 w-4" />
                               Status auf 'Gelöst' setzen
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="text-gray-500 hover:bg-gray-700">
+                            <DropdownMenuItem className="text-muted-foreground hover:bg-accent">
                               <Archive className="mr-2 h-4 w-4" />
                               Fall schließen
                             </DropdownMenuItem>
@@ -276,32 +280,29 @@ export default function DisputesPage() {
           </Card>
         </TabsContent>
 
-        {/* Support Tickets Tab - Placeholder */}
         <TabsContent value="tickets">
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardContent className="p-8">
-              <h2 className="text-xl font-semibold text-gray-100">Support Tickets Platzhalter</h2>
-              <p className="text-gray-400 mt-2">Dieser Bereich wird später implementiert.</p>
+              <h2 className="text-xl font-semibold text-foreground">Support Tickets Platzhalter</h2>
+              <p className="text-muted-foreground mt-2">Dieser Bereich wird später implementiert.</p>
             </CardContent>
           </Card>
         </TabsContent>
 
-        {/* Reviews Moderation Tab - Placeholder */}
         <TabsContent value="reviews">
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardContent className="p-8">
-              <h2 className="text-xl font-semibold text-gray-100">Bewertungs-Moderation Platzhalter</h2>
-              <p className="text-gray-400 mt-2">Dieser Bereich wird später implementiert.</p>
+              <h2 className="text-xl font-semibold text-foreground">Bewertungs-Moderation Platzhalter</h2>
+              <p className="text-muted-foreground mt-2">Dieser Bereich wird später implementiert.</p>
             </CardContent>
           </Card>
         </TabsContent>
 
-        {/* Messages Moderation Tab - Placeholder */}
         <TabsContent value="messages">
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardContent className="p-8">
-              <h2 className="text-xl font-semibold text-gray-100">Nachrichten-Moderation Platzhalter</h2>
-              <p className="text-gray-400 mt-2">Dieser Bereich wird später implementiert.</p>
+              <h2 className="text-xl font-semibold text-foreground">Nachrichten-Moderation Platzhalter</h2>
+              <p className="text-muted-foreground mt-2">Dieser Bereich wird später implementiert.</p>
             </CardContent>
           </Card>
         </TabsContent>
