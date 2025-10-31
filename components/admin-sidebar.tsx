@@ -20,6 +20,7 @@ import {
   ShieldCheck,
   FileCheck,
   Headphones,
+  Wallet,
 } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -43,8 +44,9 @@ const navigationGroups = [
     title: "FINANZEN & SUPPORT",
     items: [
       { name: "Transaktionen", href: "/admin/transactions", icon: DollarSign },
+      { name: "Auszahlungs-Management", href: "/admin/payouts", icon: Wallet },
       { name: "Streitschlichtung", href: "/admin/disputes", icon: ShieldAlert },
-      { name: "Support-Tickets", href: "/admin/support", icon: Headphones }, // Added Support-Tickets menu item
+      { name: "Support-Tickets", href: "/admin/support", icon: Headphones },
     ],
   },
   {
