@@ -7,7 +7,7 @@ import { AdminDataTable } from "@/components/admin/admin-data-table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import Download from "lucide-react"
+import { Download } from "lucide-react"
 
 interface Payout {
   id: string
