@@ -70,6 +70,9 @@ export default function AdminDashboard() {
           </Link>
           <Button variant="outline">View Reports</Button>
           <Button variant="outline">System Settings</Button>
+          {/* Additional Quick Actions */}
+          <Button variant="outline">Add New Merchant</Button>
+          <Button variant="outline">Update Listings</Button>
         </CardContent>
       </Card>
     </div>

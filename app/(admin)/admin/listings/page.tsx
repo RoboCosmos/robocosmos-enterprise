@@ -20,6 +20,11 @@ import Image from "next/image"
 
 export default function AdminListingsPage() {
   const [selectedListings, setSelectedListings] = useState<string[]>([])
+  const [searchTerm, setSearchTerm] = useState("")
+  const [merchantFilter, setMerchantFilter] = useState("all")
+  const [statusFilter, setStatusFilter] = useState("all")
+  const [typeFilter, setTypeFilter] = useState("all")
+  const [categoryFilter, setCategoryFilter] = useState("all")
 
   const listings = [
     {
@@ -31,6 +36,7 @@ export default function AdminListingsPage() {
       type: "Miete/Kauf",
       price: "€850/T / €160k",
       createdAt: "20. Okt. 2025",
+      category: "manufacturing",
     },
     {
       id: "2",
@@ -41,6 +47,7 @@ export default function AdminListingsPage() {
       type: "Miete",
       price: "€700/T",
       createdAt: "27. Okt. 2025",
+      category: "inspection",
     },
     {
       id: "3",
@@ -51,6 +58,7 @@ export default function AdminListingsPage() {
       type: "Kauf",
       price: "€75k",
       createdAt: "15. Sep. 2025",
+      category: "logistics",
     },
     {
       id: "4",
@@ -61,8 +69,19 @@ export default function AdminListingsPage() {
       type: "Kauf",
       price: "--",
       createdAt: "25. Okt. 2025",
+      category: "manufacturing",
     },
   ]
+
+  const filteredListings = listings.filter((listing) => {
+    const matchesSearch = listing.model.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesMerchant = merchantFilter === "all" || listing.merchant.toLowerCase() === merchantFilter.toLowerCase()
+    const matchesStatus = statusFilter === "all" || listing.status === statusFilter
+    const matchesType = typeFilter === "all" || listing.type.toLowerCase() === typeFilter.toLowerCase()
+    const matchesCategory = categoryFilter === "all" || listing.category === categoryFilter
+
+    return matchesSearch && matchesMerchant && matchesStatus && matchesType && matchesCategory
+  })
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
@@ -81,10 +100,10 @@ export default function AdminListingsPage() {
   }
 
   const toggleAll = () => {
-    if (selectedListings.length === listings.length) {
+    if (selectedListings.length === filteredListings.length) {
       setSelectedListings([])
     } else {
-      setSelectedListings(listings.map((l) => l.id))
+      setSelectedListings(filteredListings.map((l) => l.id))
     }
   }
 
@@ -104,12 +123,14 @@ export default function AdminListingsPage() {
                 <Input
                   placeholder="Suche nach Modell, Händler, ID..."
                   className="pl-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-400"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
             </div>
 
             {/* Merchant Filter */}
-            <Select>
+            <Select value={merchantFilter} onValueChange={setMerchantFilter}>
               <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
                 <SelectValue placeholder="Alle Händler" />
               </SelectTrigger>
@@ -121,7 +142,7 @@ export default function AdminListingsPage() {
             </Select>
 
             {/* Status Filter */}
-            <Select>
+            <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
                 <SelectValue placeholder="Alle" />
               </SelectTrigger>
@@ -136,7 +157,7 @@ export default function AdminListingsPage() {
             </Select>
 
             {/* Type Filter */}
-            <Select>
+            <Select value={typeFilter} onValueChange={setTypeFilter}>
               <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
                 <SelectValue placeholder="Alle" />
               </SelectTrigger>
@@ -150,7 +171,7 @@ export default function AdminListingsPage() {
 
           {/* Category Filter - Second Row */}
           <div className="mt-4">
-            <Select>
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
               <SelectTrigger className="bg-gray-900 border-gray-700 text-white max-w-xs">
                 <SelectValue placeholder="Alle Kategorien" />
               </SelectTrigger>
@@ -172,7 +193,7 @@ export default function AdminListingsPage() {
             <TableHeader>
               <TableRow className="border-gray-700 hover:bg-gray-800">
                 <TableHead className="w-12">
-                  <Checkbox checked={selectedListings.length === listings.length} onCheckedChange={toggleAll} />
+                  <Checkbox checked={selectedListings.length === filteredListings.length} onCheckedChange={toggleAll} />
                 </TableHead>
                 <TableHead className="text-gray-300">Roboter</TableHead>
                 <TableHead className="text-gray-300">Händler</TableHead>
@@ -184,7 +205,7 @@ export default function AdminListingsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {listings.map((listing) => (
+              {filteredListings.map((listing) => (
                 <TableRow key={listing.id} className="border-gray-700 hover:bg-gray-750">
                   <TableCell>
                     <Checkbox
