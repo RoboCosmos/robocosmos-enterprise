@@ -3,7 +3,19 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, CalendarCheck, Inbox, Heart, Building, Settings, LogOut, Menu, X } from "lucide-react"
+import {
+  LayoutDashboard,
+  CalendarCheck,
+  Inbox,
+  Heart,
+  Building,
+  Settings,
+  LogOut,
+  Menu,
+  X,
+  FileText,
+  Users,
+} from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -11,21 +23,24 @@ import { Separator } from "@/components/ui/separator"
 const navigationGroups = [
   {
     title: "ÜBERSICHT",
-    items: [
-      { name: "Dashboard", href: "/customer/dashboard", icon: LayoutDashboard },
-      { name: "Meine Buchungen", href: "/customer/bookings", icon: CalendarCheck },
-    ],
+    items: [{ name: "Dashboard", href: "/customer/dashboard", icon: LayoutDashboard }],
   },
   {
-    title: "KOMMUNIKATION",
+    title: "BESCHAFFUNG",
     items: [
-      { name: "Posteingang", href: "/customer/messages", icon: Inbox },
+      { name: "Meine Buchungen", href: "/customer/bookings", icon: CalendarCheck },
+      { name: "Angebote & Anfragen", href: "/customer/requests", icon: FileText },
       { name: "Merkliste", href: "/customer/wishlist", icon: Heart },
     ],
   },
   {
-    title: "PROFIL",
-    items: [{ name: "Firmenprofil", href: "/customer/profile", icon: Building }],
+    title: "VERWALTUNG",
+    items: [
+      { name: "Firmenprofil", href: "/customer/profile", icon: Building },
+      { name: "Team-Mitglieder", href: "/customer/team", icon: Users },
+      { name: "Posteingang", href: "/customer/messages", icon: Inbox },
+      { name: "Einstellungen", href: "/customer/settings", icon: Settings },
+    ],
   },
 ]
 
@@ -86,7 +101,7 @@ export function CustomerSidebar({ isCollapsed, onToggle }: CustomerSidebarProps)
                       className={cn(
                         "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                         isActive
-                          ? "bg-primary text-primary-foreground"
+                          ? "bg-[#0052FF] text-white" // Changed active state to blue background with white text
                           : "text-muted-foreground hover:bg-accent hover:text-foreground",
                         isCollapsed && "justify-center",
                       )}
@@ -102,23 +117,7 @@ export function CustomerSidebar({ isCollapsed, onToggle }: CustomerSidebarProps)
           ))}
         </div>
 
-        {/* Footer Navigation */}
         <div className="space-y-4">
-          <Link
-            href="/customer/settings"
-            className={cn(
-              "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-              pathname === "/customer/settings"
-                ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground",
-              isCollapsed && "justify-center",
-            )}
-            title={isCollapsed ? "Einstellungen" : undefined}
-          >
-            <Settings className="h-4 w-4 flex-shrink-0" />
-            {!isCollapsed && "Einstellungen"}
-          </Link>
-
           <Separator />
 
           <Button
