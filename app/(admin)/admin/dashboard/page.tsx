@@ -1,80 +1,160 @@
+import { AdminPageHeader } from "@/components/admin/admin-page-header"
+import { AdminStatsGrid } from "@/components/admin/admin-stats-grid"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, Building2, Package, TrendingUp } from "lucide-react"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart"
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts"
+import { Users, ShieldCheck, Database, TrendingUp } from "lucide-react"
+import Link from "next/link"
+
+// Placeholder data for charts
+const revenueData = [
+  { month: "Jan", gmv: 45000, revenue: 4500 },
+  { month: "Feb", gmv: 52000, revenue: 5200 },
+  { month: "Mar", gmv: 48000, revenue: 4800 },
+  { month: "Apr", gmv: 61000, revenue: 6100 },
+  { month: "May", gmv: 55000, revenue: 5500 },
+  { month: "Jun", gmv: 67000, revenue: 6700 },
+]
+
+const userGrowthData = [
+  { month: "Jan", newUsers: 234, newMerchants: 12 },
+  { month: "Feb", newUsers: 312, newMerchants: 18 },
+  { month: "Mar", newUsers: 289, newMerchants: 15 },
+  { month: "Apr", newUsers: 401, newMerchants: 23 },
+  { month: "May", newUsers: 378, newMerchants: 19 },
+  { month: "Jun", newUsers: 445, newMerchants: 28 },
+]
+
+const revenueChartConfig = {
+  gmv: {
+    label: "GMV (Gesamtumsatz)",
+    color: "hsl(var(--chart-1))",
+  },
+  revenue: {
+    label: "Plattform-Einnahmen",
+    color: "hsl(var(--chart-2))",
+  },
+}
+
+const userGrowthChartConfig = {
+  newUsers: {
+    label: "Neue Nutzer",
+    color: "hsl(var(--chart-3))",
+  },
+  newMerchants: {
+    label: "Neue verifizierte Händler",
+    color: "hsl(var(--chart-4))",
+  },
+}
 
 export default function AdminDashboard() {
+  const stats = [
+    {
+      title: "Total Users",
+      value: "2,847",
+      description: "+12% from last month",
+      icon: Users,
+    },
+    {
+      title: "Verified Merchants",
+      value: "342",
+      description: "+8 this week",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Active Listings",
+      value: "1,234",
+      description: "+23 today",
+      icon: Database,
+    },
+    {
+      title: "Revenue (MTD)",
+      value: "€45,231",
+      description: "+20% from last month",
+      icon: TrendingUp,
+    },
+  ]
+
   return (
     <div className="space-y-6 md:space-y-8">
-      {/* Page Header */}
-      <div>
-        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Admin Dashboard</h1>
-        <p className="text-sm md:text-base text-muted-foreground mt-1">Plattform-Übersicht und Verwaltung</p>
-      </div>
+      <AdminPageHeader title="Admin Dashboard" subtitle="Plattform-Übersicht und Verwaltung" />
 
-      {/* KPI Cards */}
-      <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-            <Users className="h-4 w-4 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">2,847</div>
-            <p className="text-xs text-muted-foreground">+12% from last month</p>
-          </CardContent>
-        </Card>
+      <AdminStatsGrid stats={stats} />
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Verified Merchants</CardTitle>
-            <Building2 className="h-4 w-4 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">342</div>
-            <p className="text-xs text-muted-foreground">+8 this week</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Listings</CardTitle>
-            <Package className="h-4 w-4 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">1,234</div>
-            <p className="text-xs text-muted-foreground">+23 today</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Revenue (MTD)</CardTitle>
-            <TrendingUp className="h-4 w-4 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">€45,231</div>
-            <p className="text-xs text-muted-foreground">+20% from last month</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Quick Actions */}
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle>Handlungsbedarf</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-4">
-          <Link href="/admin/users">
-            <Button variant="outline">Manage Users</Button>
-          </Link>
-          <Button variant="outline">View Reports</Button>
-          <Button variant="outline">System Settings</Button>
-          {/* Additional Quick Actions */}
-          <Button variant="outline">Add New Merchant</Button>
-          <Button variant="outline">Update Listings</Button>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-foreground">5 Händler warten auf Verifizierung</p>
+            <Link href="/admin/users?filter=pending-verification">
+              <Button>Jetzt prüfen</Button>
+            </Link>
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-foreground">12 Neue Inserate warten auf Freigabe</p>
+            <Link href="/admin/listings?filter=pending-approval">
+              <Button>Jetzt prüfen</Button>
+            </Link>
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-foreground">3 Streitfälle erfordern Eingreifen</p>
+            <Link href="/admin/disputes?tab=disputes">
+              <Button variant="outline">Ansehen</Button>
+            </Link>
+          </div>
         </CardContent>
       </Card>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {/* Revenue Chart */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Plattform-Umsatz vs. GMV (Letzte 6 Monate)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={revenueChartConfig} className="h-[300px] w-full">
+              <LineChart data={revenueData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <ChartLegend content={<ChartLegendContent />} />
+                <Line type="monotone" dataKey="gmv" stroke="var(--color-gmv)" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="revenue" stroke="var(--color-revenue)" strokeWidth={2} dot={false} />
+              </LineChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+
+        {/* User Growth Chart */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Nutzer-Wachstum (Letzte 6 Monate)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={userGrowthChartConfig} className="h-[300px] w-full">
+              <BarChart data={userGrowthData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <ChartLegend content={<ChartLegendContent />} />
+                <Bar dataKey="newUsers" fill="var(--color-newUsers)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="newMerchants" fill="var(--color-newMerchants)" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
