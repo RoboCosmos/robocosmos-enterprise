@@ -1,16 +1,13 @@
 "use client"
 
-import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Edit, Eye, Trash2 } from "lucide-react"
 import Image from "next/image"
-import { CreateListingSheet } from "@/components/create-listing-sheet"
+import Link from "next/link"
 
 export default function MerchantListings() {
-  const [isCreateSheetOpen, setIsCreateSheetOpen] = useState(false)
-
   const listings = [
     {
       id: 1,
@@ -41,8 +38,8 @@ export default function MerchantListings() {
           <h1 className="text-2xl md:text-3xl font-bold text-foreground">Meine Inserate</h1>
           <p className="text-sm md:text-base text-muted-foreground mt-1">Verwalten Sie Ihre Roboter-Angebote</p>
         </div>
-        <Button className="bg-primary hover:bg-primary/90" onClick={() => setIsCreateSheetOpen(true)}>
-          Neues Inserat erstellen
+        <Button asChild className="bg-primary hover:bg-primary/90">
+          <Link href="/merchant/listings/new">Neues Inserat erstellen</Link>
         </Button>
       </div>
 
@@ -89,8 +86,6 @@ export default function MerchantListings() {
           </Card>
         ))}
       </div>
-
-      <CreateListingSheet open={isCreateSheetOpen} onOpenChange={setIsCreateSheetOpen} />
     </div>
   )
 }
