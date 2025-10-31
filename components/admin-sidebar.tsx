@@ -16,6 +16,7 @@ import {
   Menu,
   X,
   FolderTree,
+  Sliders,
 } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -29,6 +30,7 @@ const navigationGroups = [
       { name: "Benutzerverwaltung", href: "/admin/users", icon: Users },
       { name: "Inseratsverwaltung", href: "/admin/listings", icon: LayoutList },
       { name: "Kategorie-Management", href: "/admin/categories", icon: FolderTree },
+      { name: "Attribut-Management", href: "/admin/attributes", icon: Sliders },
       { name: "Buchungsverwaltung", href: "/admin/bookings", icon: CalendarCheck },
     ],
   },
