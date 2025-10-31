@@ -5,12 +5,16 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
   LayoutDashboard,
-  LayoutList,
-  CalendarClock,
-  Inbox,
+  Bell,
+  FileText,
+  Mail,
+  Database,
+  Calendar,
   Star,
+  TrendingUp,
   DollarSign,
   Settings,
+  Truck,
   LogOut,
   Menu,
   X,
@@ -21,19 +25,37 @@ import { Separator } from "@/components/ui/separator"
 
 const navigationGroups = [
   {
-    title: "VERWALTUNG",
+    title: "ÜBERBLICK",
+    items: [{ name: "Dashboard", href: "/merchant/dashboard", icon: LayoutDashboard }],
+  },
+  {
+    title: "OPERATIVES GESCHÄFT",
     items: [
-      { name: "Dashboard", href: "/merchant/dashboard", icon: LayoutDashboard },
-      { name: "Meine Inserate", href: "/merchant/listings", icon: LayoutList },
-      { name: "Buchungsanfragen", href: "/merchant/requests", icon: CalendarClock },
-      { name: "Posteingang", href: "/merchant/messages", icon: Inbox },
+      { name: "Buchungsanfragen", href: "/merchant/requests", icon: Bell },
+      { name: "Angebote & Verträge", href: "/merchant/contracts", icon: FileText },
+      { name: "Posteingang", href: "/merchant/messages", icon: Mail },
     ],
   },
   {
-    title: "WACHSTUM",
+    title: "INVENTAR (RaaS)",
+    items: [
+      { name: "Meine Inserate", href: "/merchant/listings", icon: Database },
+      { name: "Verfügbarkeitskalender", href: "/merchant/calendar", icon: Calendar },
+    ],
+  },
+  {
+    title: "WACHSTUM & FINANZEN",
     items: [
       { name: "Bewertungen", href: "/merchant/reviews", icon: Star },
-      { name: "Zahlungen & Berichte", href: "/merchant/payments", icon: DollarSign },
+      { name: "Umsatz & Berichte", href: "/merchant/reports", icon: TrendingUp },
+      { name: "Abrechnungen & Auszahlungen", href: "/merchant/payments", icon: DollarSign },
+    ],
+  },
+  {
+    title: "KONTO",
+    items: [
+      { name: "Profil & Einstellungen", href: "/merchant/settings", icon: Settings },
+      { name: "Logistik & Service", href: "/merchant/logistics", icon: Truck },
     ],
   },
 ]
@@ -95,7 +117,7 @@ export function DealerSidebar({ isCollapsed, onToggle }: DealerSidebarProps) {
                       className={cn(
                         "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                         isActive
-                          ? "bg-primary text-primary-foreground"
+                          ? "bg-[#0052FF] text-white"
                           : "text-muted-foreground hover:bg-accent hover:text-foreground",
                         isCollapsed && "justify-center",
                       )}
@@ -113,21 +135,6 @@ export function DealerSidebar({ isCollapsed, onToggle }: DealerSidebarProps) {
 
         {/* Footer Navigation */}
         <div className="space-y-4">
-          <Link
-            href="/merchant/settings"
-            className={cn(
-              "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-              pathname === "/merchant/settings"
-                ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground",
-              isCollapsed && "justify-center",
-            )}
-            title={isCollapsed ? "Profil & Einstellungen" : undefined}
-          >
-            <Settings className="h-4 w-4 flex-shrink-0" />
-            {!isCollapsed && "Profil & Einstellungen"}
-          </Link>
-
           <Separator />
 
           <Button
