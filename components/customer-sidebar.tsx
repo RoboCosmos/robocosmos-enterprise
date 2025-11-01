@@ -82,7 +82,7 @@ export function CustomerSidebar({ isCollapsed, onToggle }: CustomerSidebarProps)
 
       {/* Navigation */}
       <nav className="flex h-[calc(100vh-4rem)] flex-col justify-between p-4">
-        <div className="space-y-6">
+        <div className="space-y-6 overflow-y-auto sidebar-scrollbar pr-2">
           {navigationGroups.map((group) => (
             <div key={group.title}>
               {!isCollapsed && (
