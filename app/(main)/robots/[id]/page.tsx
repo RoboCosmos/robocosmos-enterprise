@@ -3,7 +3,18 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Package, Battery, TrendingDown, Calendar, ShoppingCart, MapPin, Mail, FileDown } from "lucide-react"
+import {
+  ArrowLeft,
+  Package,
+  Battery,
+  TrendingDown,
+  Calendar,
+  ShoppingCart,
+  MapPin,
+  Mail,
+  FileDown,
+  Star,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -86,6 +97,35 @@ export default function RobotDetailPage({ params }: { params: { id: string } }) 
   const handleDatasheetDownload = () => {
     // In production, this would trigger an actual download
     window.open(robot.datasheetUrl, "_blank")
+  }
+
+  const merchantRating = {
+    average: 4.8,
+    count: 127,
+  }
+
+  const renderStars = (rating: number) => {
+    const stars = []
+    const fullStars = Math.floor(rating)
+    const hasHalfStar = rating % 1 >= 0.5
+
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push(<Star key={i} className="h-4 w-4 fill-yellow-500 text-yellow-500" />)
+      } else if (i === fullStars && hasHalfStar) {
+        stars.push(
+          <div key={i} className="relative">
+            <Star className="h-4 w-4 text-yellow-500" />
+            <div className="absolute inset-0 overflow-hidden w-1/2">
+              <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
+            </div>
+          </div>,
+        )
+      } else {
+        stars.push(<Star key={i} className="h-4 w-4 text-muted-foreground/30" />)
+      }
+    }
+    return stars
   }
 
   return (
@@ -221,6 +261,13 @@ export default function RobotDetailPage({ params }: { params: { id: string } }) 
                   </Badge>
                 </div>
               </div>
+
+              <div className="flex items-center gap-2 py-2 px-3 rounded-lg bg-accent/50 border border-border">
+                <div className="flex items-center gap-1">{renderStars(merchantRating.average)}</div>
+                <span className="text-sm font-semibold text-foreground">{merchantRating.average.toFixed(1)}</span>
+                <span className="text-sm text-muted-foreground">({merchantRating.count} Bewertungen)</span>
+              </div>
+
               <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Mail className="mr-2 h-4 w-4" />
                 Händler kontaktieren
