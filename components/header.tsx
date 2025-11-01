@@ -98,12 +98,6 @@ export function Header() {
                 <SheetHeader>
                   <SheetTitle className="text-left font-bold">Navigation</SheetTitle>
                 </SheetHeader>
-                {activePageLabel && (
-                  <div className="mt-4 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                    <p className="text-xs text-muted-foreground mb-1">Aktuelle Seite</p>
-                    <h2 className="text-xl font-black text-foreground">{activePageLabel}</h2>
-                  </div>
-                )}
                 <div className="flex flex-col gap-2 mt-8">
                   {navigationItems.map((item) => {
                     const isActive = pathname === item.href
