@@ -18,6 +18,7 @@ import {
   LogOut,
   Menu,
   X,
+  Users,
 } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -55,6 +56,7 @@ const navigationGroups = [
     title: "KONTO",
     items: [
       { name: "Profil & Einstellungen", href: "/merchant/settings", icon: Settings },
+      { name: "Team-Verwaltung", href: "/merchant/team-members", icon: Users },
       { name: "Logistik & Service", href: "/merchant/logistics", icon: Truck },
     ],
   },

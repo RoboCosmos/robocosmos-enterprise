@@ -58,6 +58,7 @@ const navigationGroups = [
     title: "PLATTFORM",
     items: [
       { name: "Plattform-Einstellungen", href: "/admin/settings", icon: Settings },
+      { name: "Team-Verwaltung", href: "/admin/team-members", icon: Users },
       { name: "System-Status", href: "/admin/status", icon: Server },
     ],
   },

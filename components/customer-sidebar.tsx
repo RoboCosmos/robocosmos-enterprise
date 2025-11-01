@@ -37,7 +37,7 @@ const navigationGroups = [
     title: "VERWALTUNG",
     items: [
       { name: "Firmenprofil", href: "/customer/profile", icon: Building },
-      { name: "Team-Mitglieder", href: "/customer/team", icon: Users },
+      { name: "Team-Mitglieder", href: "/customer/team-members", icon: Users },
       { name: "Posteingang", href: "/customer/messages", icon: Inbox },
       { name: "Einstellungen", href: "/customer/settings", icon: Settings },
     ],
