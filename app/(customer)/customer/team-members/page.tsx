@@ -121,7 +121,7 @@ export default function CustomerTeamMembersPage() {
   const [members] = useState<TeamMember[]>(teamMembers)
 
   const handleInviteMember = () => {
-    router.push("/customer/team-members/invite")
+    router.push("/customer/team-members/new")
   }
 
   return (

@@ -54,7 +54,7 @@ export default function TeamMembersPage() {
   ])
 
   const handleInviteMember = () => {
-    router.push("/merchant/team-members/invite")
+    router.push("/merchant/team-members/new")
   }
 
   const handleChangeRole = (id: string) => {

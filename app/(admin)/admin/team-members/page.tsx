@@ -50,7 +50,7 @@ export default function AdminTeamMembersPage() {
   const [members] = useState<TeamMember[]>(teamMembers)
 
   const handleInvite = () => {
-    router.push("/admin/team-members/invite")
+    router.push("/admin/team-members/new")
   }
 
   const handleEditPermissions = (id: string) => {
